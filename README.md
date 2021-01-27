@@ -138,7 +138,7 @@ Project Link: [@Github Repo](https://github.com/your_username/repo_name)
 * [BEDU](https://bedu.org/)
 
 <!-- Resources -->
-## resources
+## Resources
 * [CONDA](https://docs.anaconda.com/anaconda/user-guide/tasks/using-r-language/)
 
 

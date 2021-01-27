@@ -1,0 +1,4 @@
+# ignore all final dataset due to weight
+# rdata/
+houseA.csv
+houseB.csv
