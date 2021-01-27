@@ -110,12 +110,12 @@ _For more info, refer to [Aras Documentation](https://www.researchgate.net/publi
 <!-- CONTRIBUTING -->
 ## To do
 
-1. Activity prediction on ARAS dataset
-2. Security improvements
-3. Improvements in energy saving
-4. Health alert for bad habits
-
-
+- [ ] Activity prediction on ARAS dataset
+- [ ] Security improvements
+- [ ] Improvements in energy saving
+- [ ] Health alert for bad habits
+- [ ] Comfort
+- [ ] More
 
 <!-- LICENSE -->
 ## License
