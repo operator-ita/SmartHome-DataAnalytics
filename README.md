@@ -83,18 +83,26 @@ Try the same procedure to your our data. Here is how:
 - Anaconda
 - Rstudio
 
+1. Create a environment 
+  ```sh
+  conda create --prefix=/home/david/github/data-science/bedu/Programacion-con-R-Santander/r-environment r-essentials r-base
+  ```
 
 ### Installation
 
+ 
 1. Clone the repo
    ```sh
    git clone https://github.com/operator-ita/SmartHome-DataAnalytics
    ```
-3. Load our R environment
+2. Load our R environment
    ```sh
-   conda activate r_env
+   conda activate renv
    ```
-
+3. Deactivate
+  ```sh
+  conda dactivate
+  ```
 
 
 
