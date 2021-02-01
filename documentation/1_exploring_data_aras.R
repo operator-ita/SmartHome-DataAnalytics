@@ -1,11 +1,8 @@
 # Houses
 
-    # Set the working directory 
-    setwd(paste(getwd(),"data/rdata", sep='/'))
-
     # Load data frames 
-    houseA <- read.csv('houseA.csv')
-    houseB <- read.csv('houseB.csv')
+    houseA <- read.csv('./data/rdata/houseA.csv')
+    houseB <- read.csv('./data/rdata/houseB.csv')
     #colnames(houseA) <- c(1:22) ; colnames(houseA) <- c(1:22)
     dim(houseA); dim(houseB)
     head(houseA); head(houseB)
