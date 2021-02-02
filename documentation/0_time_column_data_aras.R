@@ -20,3 +20,13 @@ head(houseA) ; head(houseB)
 # Writing data
 write.csv(houseA, file='../../rdata/houseA_time.csv', row.names=TRUE)
 write.csv(houseB, file='../../rdata/houseB_time.csv', row.names=TRUE)
+
+# Frequency table
+write.csv(table(houseA$P1), file='Freq_houseA_P1.csv', row.names=TRUE)
+write.csv(table(houseA$P2), file='Freq_houseA_P2.csv', row.names=TRUE)
+write.csv(table(houseB$P1), file='Freq_houseB_P1.csv', row.names=TRUE)
+write.csv(table(houseB$P2), file='Freq_houseB_P2.csv', row.names=TRUE)
+
+write.csv(table(houseB$P1, houseB$P2), file='Freq_houseB.csv', row.names=TRUE)
+write.csv(table(houseA$P1, houseA$P2), file='Freq_houseA.csv', row.names=TRUE)
+View(table(houseB$P1, houseB$P2))
