@@ -17,3 +17,10 @@
     summary(mtcars)
     head(mtcars, n=10L)
     View(mtcars)
+
+
+    letters <- c(1,5)
+    replace(letters, c(1, 5, 9, 15, 21),  c("A", "E", "I", "O", "U")
+)
+
+    
