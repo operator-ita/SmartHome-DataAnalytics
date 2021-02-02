@@ -1,5 +1,6 @@
     # Library 
     library(dplyr)
+    library(plyr)
     
     # Load data frames 
     houseA <- read.csv('./data/rdata/houseA.csv')
