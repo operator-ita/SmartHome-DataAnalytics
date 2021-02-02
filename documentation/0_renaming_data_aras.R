@@ -134,6 +134,6 @@
     'P2')
 
     # Save data frames
-    houseA <- write.csv(houseA, file='./data/rdata/houseA_.csv', row.names=TRUE)
-    houseB <- write.csv(houseB, file='./data/rdata/houseB_.csv', row.names=TRUE)
+    write.csv(houseA, file='./data/rdata/houseA_.csv', row.names=TRUE)
+    write.csv(houseB, file='./data/rdata/houseB_.csv', row.names=TRUE)
     
