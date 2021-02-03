@@ -2,8 +2,8 @@
 # @Equipo: 14 
 
 # Loading data
-houseA <- read.csv("../../rdata/houseA_.csv")
-houseB <- read.csv("../../rdata/houseB_.csv")
+houseA <- read.csv("./data/rdata/houseA_.csv")
+houseB <- read.csv("./data/rdata/houseB_.csv")
 str(houseA); str(houseB)
 
 # Vector time for a day
