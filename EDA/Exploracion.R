@@ -8,6 +8,7 @@
 # Librerías
 library(dplyr)
 library(plyr)
+library(tibble)
 
 # Funciones
 # Función para insertar columna con actividades
@@ -95,10 +96,47 @@ houseB.act.names <- c(
 houseA <- insertar.act(houseA, houseA.act.names)
 houseB <- insertar.act(houseB, houseB.act.names)
 
-head(houseA)
-head(houseB)
+head(houseA) ; head(houseB)
 
+# Inserción de columna con datos de tiempo
+# Creación de un vector de tiempo 24 hrs, segundo a segundo
+day <- format( seq.POSIXt(as.POSIXct(Sys.Date()), as.POSIXct(Sys.Date()+1), 
+                          by = "1 s"),
+               "%H:%M:%S", tz="GMT")
+day <- day[-length(day)]
 
+houseA <- add_column(houseA, "time"=rep(day, 30) ,.before="Ph1")
+houseB <- add_column(houseB, "time"=rep(day, 30) ,.before="co1") 
+head(houseA) ; head(houseB)
+
+# Escribiendo datasets modificada
+write.csv(houseA, file='data/Modified/houseA_time.csv', row.names=TRUE)
+write.csv(houseB, file='data/Modified/houseB_time.csv', row.names=TRUE)
+
+# Análisis Exploratorio
+
+# Tabla de Frecuecnia de actividades por persona por casa
+houseA.P1.Freq <-table(houseA$P1)
+houseA.P2.Freq <-table(houseA$P2)
+houseB.P1.Freq <-table(houseB$P1)
+houseB.P2.Freq <-table(houseB$P2)
+
+View(houseA.P1.Freq) ; View(houseA.P2.Freq)
+View(houseB.P1.Freq) ; View(houseB.P2.Freq)
+
+write.csv(houseA.P1.Freq, file='data/Frequency/Freq_houseA_P1.csv', row.names=TRUE)
+write.csv(houseA.P2.Freq, file='data/Frequency/Freq_houseA_P2.csv', row.names=TRUE)
+write.csv(houseB.P1.Freq, file='data/Frequency/Freq_houseB_P1.csv', row.names=TRUE)
+write.csv(houseB.P2.Freq, file='data/Frequency/Freq_houseB_P2.csv', row.names=TRUE)
+
+# Tablas de Contingencia de actividades por casa
+houseA.Freq <- table(houseA$P1, houseA$P2)
+houseB.Freq <- table(houseB$P1, houseB$P2)
+
+View(houseA.Freq) ; View(houseB.Freq)
+
+write.csv(houseA.Freq, file='data/Frequency/Freq_houseA.csv', row.names=TRUE)
+write.csv(houseB.Freq, file='data/Frequency/Freq_houseB.csv', row.names=TRUE)
 
 
 
