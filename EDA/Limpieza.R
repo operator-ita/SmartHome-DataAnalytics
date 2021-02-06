@@ -9,7 +9,6 @@
 
 # Librerías
 library(dplyr)
-library(plyr)
 library(data.table)
 
 # Directorio de trabajo
