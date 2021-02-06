@@ -64,3 +64,5 @@ names(houseB) <- c('co1', 'co2', 'co3', 'co4', 'co5', 'co6', 'di2', 'fo1', 'fo2'
 # Exportación de datasets
 write.csv(houseA, file='../../Clean/houseA.csv', row.names=FALSE)
 write.csv(houseB, file='../../Clean/houseB.csv', row.names=FALSE)
+
+setwd(repo.dir)
