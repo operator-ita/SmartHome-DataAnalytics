@@ -1,4 +1,4 @@
-# @Proyecto: Predicción de
+# @Proyecto: Predicción de comportamiento en una casa inteligente
 # @Equipo: 14
 
 # En este script se importan los archivos txt que contienen los registros del
