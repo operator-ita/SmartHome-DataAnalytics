@@ -11,7 +11,7 @@ library(plyr)
 
 # Funciones
 # Función para insertar columna con actividades
-insertar.act <- funtion(df, act.names){
+insertar.act <- function(df, act.names){
   df <- mutate(df, P1=as.factor(P1_code))
   df <- mutate(df, P2=as.factor(P2_code))
   df.act.names <- act.names
