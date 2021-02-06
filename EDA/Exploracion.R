@@ -1,4 +1,4 @@
-# @Proyecto: 
+# @Proyecto: Predicción de comportamiento en una casa inteligente
 # @Equipo: 14
 
 # En este script se importan los datasets de las dos casas del proyecto "Aras"
@@ -21,7 +21,7 @@ insertar.act <- function(df, act.names){
 }
 
 # Directorio de trabajo
-repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
+repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
 
 # Importación de datasets 
@@ -96,7 +96,7 @@ houseA <- insertar.act(houseA, houseA.act.names)
 houseB <- insertar.act(houseB, houseB.act.names)
 
 head(houseA)
-head(HouseB)
+head(houseB)
 
 
 
