@@ -3,12 +3,20 @@
 
 # En este script se importan los datasets de las dos casas del proyecto "Aras"
 # previamente limpiados y se hace un análisis exploratorio para el planteamiento
-# de los problemas del proyecto.
+# de los problemas del proyecto. Como resultado se genera una versión modificada
+# de cada dataset con una coolumna que describe la hora de cada actividad, el día 
+# y las actividades realizadas por persona como factor. También se generan tablas
+# de frecuencias individuales y conjuntas de las actividades realizadas por los
+# habitantes de cada casa.
 
 # Librerías
 library(dplyr)
 library(plyr)
 library(tibble)
+
+# Directorio de trabajo
+repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
+setwd(repo.dir)
 
 # Funciones
 # Función para insertar columna con actividades
@@ -21,9 +29,16 @@ insertar.act <- function(df, act.names){
   return(df)
 }
 
-# Directorio de trabajo
-repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
-setwd(repo.dir)
+# Función para insertar columna con días
+insertar.dias <- function(df){
+  days <- c()
+  for(i in 1:30){
+    day.factor <- paste("Day", as.character(i), sep=" ")
+    days <- c(days, rep(day.factor, 86400))
+  }
+  df <- add_column(df, "Day"=as.factor(days), .before="time")
+  return(df)
+}
 
 # Importación de datasets 
 houseA <- read.csv("data/Clean/houseA.csv")
@@ -106,8 +121,16 @@ day <- format( seq.POSIXt(as.POSIXct(Sys.Date()), as.POSIXct(Sys.Date()+1),
 day <- day[-length(day)]
 
 houseA <- add_column(houseA, "time"=rep(day, 30) ,.before="Ph1")
-houseB <- add_column(houseB, "time"=rep(day, 30) ,.before="co1") 
+houseB <- add_column(houseB, "time"=rep(day, 30) ,.before="co1")
+
 head(houseA) ; head(houseB)
+
+# Inserción de columna con días
+houseA <- insertar.dias(houseA)
+houseB <- insertar.dias(houseB)
+
+head(houseA) ; head(houseB)
+tail(houseA) ; tail(houseB)
 
 # Escribiendo datasets modificada
 write.csv(houseA, file='data/Modified/houseA_time.csv', row.names=TRUE)
@@ -138,5 +161,4 @@ View(houseA.Freq) ; View(houseB.Freq)
 write.csv(houseA.Freq, file='data/Frequency/Freq_houseA.csv', row.names=TRUE)
 write.csv(houseB.Freq, file='data/Frequency/Freq_houseB.csv', row.names=TRUE)
 
-
-
+setwd(repo.dir)
