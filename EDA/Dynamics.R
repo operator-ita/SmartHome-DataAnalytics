@@ -8,7 +8,7 @@ library(dplyr)
 library(ggplot2)
 library(plyr)
 library(reshape2)
-
+library(ggthemes)
 
 # Directorio de trabajo
 repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
@@ -70,7 +70,7 @@ p <- ggplot(houseA.tareas.m,
                      labels = paste0(as.character(c(seq(600, 0, -300), 
                                                     seq(300, 1500, 300))), "min")) + 
   coord_flip() + 
-  theme_bw()
+  theme_stata() + scale_fill_stata()
 p
 
 houseB.tareas.m <- mutate(houseB.tareas, P2=-P2)
@@ -85,7 +85,7 @@ p <- ggplot(houseB.tareas.m,
                      labels = paste0(as.character(c(seq(600, 0, -100), 
                                                     seq(100, 600, 100))), "min")) + 
   coord_flip() + 
-  theme_bw()
+  theme_stata() + scale_fill_stata()
 p
 
 # Comparación de tiempo invertido en actividades recreativas
@@ -122,7 +122,7 @@ p <- ggplot(houseB.rec.m,
                      labels = paste0(as.character(c(seq(400, 0, -75), 
                                                     seq(75, 300, 75))), "h")) + 
   coord_flip() + 
-  theme_bw()
+  theme_stata()
 p
 
 #todo Linea de tiempo de Q

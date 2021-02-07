@@ -1,0 +1,5 @@
+install.packages("ggthemes")
+library(ggthemes)
+
+# Temas
+theme_stata() + scale_fill_stata()
