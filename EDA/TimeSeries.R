@@ -1,8 +1,8 @@
 # @Proyecto: 
 # @Equipo: 14
 
-# En este script se realiza una tabla de frecencia de actividades por día por persona de cada casa 
-# y se grafican sus series de tiempo 
+# En este script se realiza una tabla de frecencia de actividades por día por
+# persona de cada casa y se grafican sus series de tiempo 
 
 # Librerías
 library(dplyr)
