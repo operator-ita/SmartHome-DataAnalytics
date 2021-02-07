@@ -48,7 +48,8 @@ p <- ggplot(houseA.tareas.m,
   geom_bar(data=subset(houseA.tareas.m, Persona=="P1"), stat="identity") +
   geom_bar(data=subset(houseA.tareas.m, Persona=="P2"), stat="identity") +
   scale_y_continuous(breaks = seq(-600, 600, 100), 
-                     labels = paste0(as.character(c(seq(600, 0, -100), seq(100, 600, 100))), "min")) + 
+                     labels = paste0(as.character(c(seq(600, 0, -100), 
+                                                    seq(100, 600, 100))), "min")) + 
   coord_flip() + 
   theme_bw()
 p
@@ -62,7 +63,8 @@ p <- ggplot(houseB.tareas.m,
   geom_bar(data=subset(houseB.tareas.m, Persona=="P1"), stat="identity") +
   geom_bar(data=subset(houseB.tareas.m, Persona=="P2"), stat="identity") +
   scale_y_continuous(breaks = seq(-600, 600, 100), 
-                     labels = paste0(as.character(c(seq(600, 0, -100), seq(100, 600, 100))), "min")) + 
+                     labels = paste0(as.character(c(seq(600, 0, -100), 
+                                                    seq(100, 600, 100))), "min")) + 
   coord_flip() + 
   theme_bw()
 p
@@ -84,7 +86,8 @@ p <- ggplot(houseA.rec.m,
   geom_bar(data=subset(houseA.rec.m, Persona=="P1"), stat="identity") +
   geom_bar(data=subset(houseA.rec.m, Persona=="P2"), stat="identity") +
   scale_y_continuous(breaks = seq(-100, 200, 25), 
-                     labels = paste0(as.character(c(seq(100, 0, -25), seq(25, 200, 25))), "h")) + 
+                     labels = paste0(as.character(c(seq(100, 0, -25), 
+                                                    seq(25, 200, 25))), "h")) + 
   coord_flip() + 
   theme_bw()
 p
@@ -98,7 +101,14 @@ p <- ggplot(houseB.rec.m,
   geom_bar(data=subset(houseB.rec.m, Persona=="P1"), stat="identity") +
   geom_bar(data=subset(houseB.rec.m, Persona=="P2"), stat="identity") +
   scale_y_continuous(breaks = seq(-400, 300, 75), 
-                     labels = paste0(as.character(c(seq(400, 0, -75), seq(75, 300, 75))), "h")) + 
+                     labels = paste0(as.character(c(seq(400, 0, -75), 
+                                                    seq(75, 300, 75))), "h")) + 
   coord_flip() + 
   theme_bw()
 p
+
+#todo Linea de tiempo de Q
+(houseA.tareas <- mutate(houseA.tareas, Q=P2/P1))
+(houseB.tareas <- mutate(houseB.tareas, Q=P2/P1))
+#calcular Q por día
+#serie de tiempo
