@@ -12,7 +12,7 @@ library(dplyr)
 library(data.table)
 
 # Directorio de trabajo
-repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
+repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
 
 # Funciones
