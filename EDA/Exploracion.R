@@ -15,7 +15,7 @@ library(plyr)
 library(tibble)
 
 # Directorio de trabajo
-repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
+repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
 
 # Funciones
