@@ -35,17 +35,15 @@ freq.tb <- function(col.act, group.by, start, end) {
   return(ds)
 }
 
-# Función para graficar serie de tiempo
-ts.plot <- function(df, actividad) {
+ts.create <- function(df, actividad) {
   # Filtering activity
-  df <- df[df==actividad, ]
+  df <- df[df==actividad,]
+  # df <- na.omit(df)
   vec <- as.vector(t(df$Freq))
   # Convertimos los datos en serie de tiempo con el comando ts
-  tsb <- ts(vec, start = 1, frequency = 1)
+  tsb <- ts(vec, start = 1, end = 30, frequency = 1)
   # Inicio, fin y frecuencia de la serie
   start(tsb); end(tsb); frequency(tsb)  # Inicio, fin y frecuencia de la serie
-  # Graficamos la serie de tiempo
-  plot(tsb, main = paste("Serie de tiempo", actividad), ylab = "Segundos", xlab = "Días")
   # Regresamos la serie de tiempo
   return(tsb)
 }
@@ -59,9 +57,17 @@ houseA <- insertar.dia(houseA, start=1, end=30, interval=86400)
 houseB <- insertar.dia(houseB, start=1, end=30, interval=86400)
 
 # Tablas de frecuencia  
-houseA.p1.freq <- freq.tb(houseA$P1, houseA$day, 1, 30)
-houseA.p2.freq <- freq.tb(houseA$P2, houseA$day, 1, 30)
+houseA.p1.freq <- freq.tb(houseA$X21, houseA$day, 1, 30)
+houseA.p2.freq <- freq.tb(houseA$X22, houseA$day, 1, 30)
+
+houseA.p1.freq
+
 
 # Series de tiempo por persona y actividad
-ts.plot(houseA.p1.freq,"\tGoing_Out")
-ts.plot(houseA.p2.freq,"\tGoing_Out")
+a <- ts.create(houseA.p1.freq,1)
+b <- ts.create(houseA.p2.freq,2)
+
+# Graficar 
+plot(b, main = paste("Serie de tiempo", ylab = "Segundos", xlab = "Días"))
+
+
