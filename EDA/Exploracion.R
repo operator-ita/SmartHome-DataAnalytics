@@ -52,8 +52,8 @@ str(houseA); str(houseB)
 # Inserción de columnas de actividades
 houseA.act.names <- c(
   "1"	= "Other",
-  "2" = "	Going_Out", # Seguridad
-  "3" =	"Preparing_Breakfast", # Alimentación
+  "2" = "Going Out", # Seguridad
+  "3" =	"Preparing Breakfast", # Alimentación
   "4" =	"Having_Breakfast", # Alimentación
   "5" =	"Preparing_Lunch", # Alimentación
   "6" =	"Having_Lunch", # Alimentación
