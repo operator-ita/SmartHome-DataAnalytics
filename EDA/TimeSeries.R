@@ -11,7 +11,7 @@ library(purrr)
 library(data.table)
 library(ggplot2)
 library(zoo) # install.packages("zoo")
-
+library(ggthemes) # install.packages("ggthemes")
 
 # Directorio de trabajo
 repo.dir <- "" 
@@ -40,6 +40,11 @@ ts.plot.save <- function(ts1, titulo_, ylab_, xlab_, dir) {
   dev.off()
 }
 
+# Funcion para crear graficas
+ts.plot <- function(tss) {
+  P <- autoplot(as.zoo(tss)/3600, facet=NULL) + theme_stata() + scale_fill_stata()  + ylab('Tiempo acomulado (h)') + xlab('Semana') 
+  return(P)
+}
 
 # Función para crear una serie multivariada
 ts.multivar <- function(df, activities, start_, frecuency_) {
@@ -86,10 +91,10 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
 
     
     # Explorando patrones 
-    dash.ts.act('B','P1','Toileting')    
+    dash.ts.act('A','P1','Toileting')    
     
     # Descomposicion
-    dash.dec.act('A','P2',"Toileting")
+    dash.dec.act('B','P2',"Toileting")
 
     # Explorando relaciones
     dash.ts.act.p('B','P1',"Toileting", 'P2',"Toileting")
@@ -109,30 +114,24 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
       ts.plot.save(ts.multivar(houseA.p1.freq,aseo,1,7), "HouseA-P1 activities history", "week", "hour", "houseA-P1-seguridad")
       
 
-      
-
     # Buscador de relaciones de actividad por persona en una casa 
     dash.ts.act <- function(house, person, activity) {
       if(house=='A'){
         if(person=='P1'){
           P1 <- ts.univar(houseA.p1.freq,activity,1,7)
-          P <- autoplot(as.zoo(P1), facet=NULL)
-          return(P)
+          return(ts.plot(P1))
         }else if (person=='P2') {
           P2 <- ts.univar(houseA.p2.freq,activity,1,7)
-          P <- autoplot(as.zoo(P2), facet=NULL)
-          return(P)
+          return(ts.plot(P2))
         }
       }
       if(house=='B'){
         if(person=='P1'){
           P1 <- ts.univar(houseB.p1.freq,activity,1,7)
-          P <- autoplot(as.zoo(P1), facet=NULL)
-          return(P)
+          return(ts.plot(P1))
         }else if (person=='P2') {
           P2 <- ts.univar(houseB.p2.freq,activity,1,7)
-          P <- autoplot(as.zoo(P2), facet=NULL)
-          return(P)
+          return(ts.plot(P2))
         }
       }
     }
@@ -142,25 +141,20 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
       if(house=='A'){
         if(person=='P1'){
           P1 <- ts.univar(houseA.p1.freq,activity,1,7)
-          P1 <- as.zoo(decompose(P1))
-          P <- autoplot(P1, facet=NULL)
-          return(P)
+          return(plot(decompose(P1)))
         }else if (person=='P2') {
           P2 <- ts.univar(houseA.p2.freq,activity,1,7)
-          P <- autoplot(decompose(as.zoo(P1)), facet=NULL)
-          return(P)
+          return(plot(decompose(P2)))
         }
       }
 
       if(house=='B'){
         if(person=='P1'){
           P1 <- ts.univar(houseB.p1.freq,activity,1,7)
-          P <- autoplot(as.zoo(P1), facet=NULL)
-          return(P)
+          return(plot(decompose(P1)))
         }else if (person=='P2') {
           P2 <- ts.univar(houseB.p2.freq,activity,1,7)
-          P <- autoplot(as.zoo(P1), facet=NULL)
-          return(P)
+          return(plot(decompose(P2)))
         }
       }
     }
@@ -200,4 +194,5 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
         return(P)
       }
     }
+
 
