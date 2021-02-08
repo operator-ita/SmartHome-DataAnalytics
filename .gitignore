@@ -11,3 +11,5 @@ ldrF.csv
 houses_with_time/
 renamed_columns/
 Aras_datasets/
+data/houseB_time.csv
+*.csv

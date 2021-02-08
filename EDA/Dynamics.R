@@ -18,15 +18,11 @@ setwd(repo.dir)
 
 # Funciones
 frec.comp <- function(df1, df2, act.vec){
-  #new.df <- merge(filter(df1, Var1 %in% act.vec),
-  #                filter(df2, Var1 %in% act.vec), 
-  #                by="Var1", all.x=T, chek.names=F)
   new.df <- merge(df1, df2, by="Var1", all.x=T, check.names=F)
   new.df <- new.df[, c(1,3,5)]
   names(new.df) <- c("Activity", "P1", "P2")
   new.df[is.na(new.df)] <- 0
   new.df <- mutate(new.df, P1=P1/60, P2=P2/60)
-
   return(new.df)
 }
 
