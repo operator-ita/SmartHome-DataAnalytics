@@ -1,7 +1,9 @@
 # @Proyecto: Predicción de comportamiento en una casa inteligente
 # @Equipo: 14
 
-# Comparación de la dinámica de cada casa:
+# Comparación del tiempo dedicado a cada actividad por ambos miembros de cada casa.
+# Este script genera gráficas de población que comparan el tiempo invertido en 
+# cada actividad por cada miembro de una casa.
 
 # Librerías
 library(dplyr)
