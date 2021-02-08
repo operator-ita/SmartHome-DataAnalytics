@@ -9,16 +9,16 @@
   <h3 align="center">SmartHome-DataAnalytics</h3>
 
   <p align="center">
-    A smart analysis of home sensors to provide security, healcare, energy savings, comfort, and more.  
+    Análisis estadístico de dos casas inteligentes multiresidenciales para prober toma de desiciones en los rubros de seguridad, salud, dinámica de los habitantes y más.  
     <br />
-    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics"><strong>Ver documentación »</strong></a>
     <br />
     <br />
-    <a href="https://www.youtube.com/watch?v=7yh9i0PAjck&ab_channel=cosmicrat">View Demo</a>
+    <a href="https://www.youtube.com/watch?v=7yh9i0PAjck&ab_channel=cosmicrat">Ver dashboard</a>
     ·
-    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Report Bug</a>
+    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Reportar un error</a>
     ·
-    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Request Feature</a>
+    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Solicitar un cambio</a>
   </p>
 </p>
 
@@ -26,19 +26,19 @@
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary>Tabla de contenido</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#Acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#Contruido-con-r">Built With</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#Configuraciones iniciales">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#Prerequisitos">Prerequisites</a></li>
+        <li><a href="#Instalación">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -56,9 +56,9 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Acerca-del-proyecto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://bedu.com)
 
 This repo ... 
 
@@ -165,4 +165,4 @@ Project Link: [@Github Repo](https://github.com/your_username/repo_name)
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/demo.gif
