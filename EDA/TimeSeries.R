@@ -16,16 +16,17 @@ library(ggthemes) # install.packages("ggthemes")
 # Directorio de trabajo
 repo.dir <- "" 
 setwd(repo.dir)
- 
+
+
 # Funciones
 # Función para crear una serie univariada
 ts.univar <- function(df, actividad, start_, frecuency_) {
   # Filtering activity
-  df <- df[df==actividad,]
+  df <- df[df$Activities==actividad,]
   # df <- na.omit(df)
-  vec <- as.vector(t(df$Freq))
+  vector <- t(as.vector(select(df, 2:31)))
   # Convertimos los datos en serie de tiempo con el comando ts
-  tsb <- ts(vec,  start=start_, frequency = frecuency_)
+  tsb <- ts(vector,  start=1,  frequency = frecuency_)
   # Verificamos Inicio, fin y frecuencia de la serie
   start(tsb); end(tsb); frequency(tsb)  # Inicio, fin y frecuencia de la serie
   # Regresamos la serie de tiempo
@@ -48,18 +49,15 @@ ts.plot <- function(tss) {
 
 # Función para crear una serie multivariada
 ts.multivar <- function(df, activities, start_, frecuency_) {
-  df <- subset(df, Activities %in% activities)
-  sdf <- split(df, activities, drop = FALSE)
-  sdf <- reduce(sdf, full_join, by = "day");
-  sdf <- select(sdf, starts_with("Freq"))
-  # Inicio, fin y frecuencia de la serie
-  #start(sdf); end(sdf); frequency(sdf)  
+  sdf <- subset(df, Activities %in% activities)
+  rownames(sdf) <- sdf$Activities
+  sdf <- select(sdf, 2:31)
+  sdf <- t(sdf)
   # Convertimos los datos en serie de tiempo con el comando ts
   tsb <- ts(sdf, start = start_, frequency = frecuency_)
   # Regresamos la serie de tiempo
   return(tsb)
 }
-
 
 
 # Serie de tiempo univariada del historico por actividad por persona
@@ -89,18 +87,23 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
     houseB.p1.freq <- read.csv("data/frequency_tables/houseB-p1-freq.csv")
     houseB.p2.freq <- read.csv("data/frequency_tables/houseB-p2-freq.csv")
 
+    houseA.p1.freq$Activities
+    houseB.p1.freq$Activities
     
     # Explorando patrones 
-    dash.ts.act('A','P1','Toileting')    
+    dash.ts.act('A','P2','Napping')    
+    dash.ts.act('B','P1','Having Breakfast')    
     
     # Descomposicion
     dash.dec.act('B','P2',"Toileting")
 
+    
     # Explorando relaciones
     dash.ts.act.pers('A','P1',"Toileting", 'P2',"Toileting")
-    dash.ts.act.pers('B','P1',"Toileting", 'P1','Having_Breakfast')
+    dash.ts.act.pers('B','P1',"Toileting", 'P1','Having Breakfast')
 
-    cbine('a','b')
+    # Estudiando actividades por grupo 
+    ts.plot(ts.multivar(houseA.p1.freq,seguridad,1,7))
 
     ## Serie de tiempo multivariada del tiempo acomulado por actividad por persona 
     ### Actividades por categoría 
