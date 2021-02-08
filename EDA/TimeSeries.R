@@ -42,7 +42,7 @@ ts.plot.save <- function(ts1, titulo_, ylab_, xlab_, dir) {
 
 # Funcion para crear graficas
 ts.plot <- function(tss) {
-  P <- autoplot(as.zoo(tss)/3600, facet=NULL) + theme_stata() + scale_fill_stata()  + ylab('Tiempo acomulado (h)') + xlab('Semana') 
+  P <- autoplot(as.zoo(tss)/3600, facet=NULL) + theme_stata() + scale_fill_stata()  + ylab('Tiempo acomulado (h)') + xlab('Semana') + ggtitle("Serie de tiempo acomulado por día") 
   return(P)
 }
 
@@ -97,9 +97,10 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
     dash.dec.act('B','P2',"Toileting")
 
     # Explorando relaciones
-    dash.ts.act.p('B','P1',"Toileting", 'P2',"Toileting")
-    dash.ts.act.p('B','P1',"Toileting", 'P1','Having_Breakfast')
+    dash.ts.act.pers('A','P1',"Toileting", 'P2',"Toileting")
+    dash.ts.act.pers('B','P1',"Toileting", 'P1','Having_Breakfast')
 
+    cbine('a','b')
 
     ## Serie de tiempo multivariada del tiempo acomulado por actividad por persona 
     ### Actividades por categoría 
@@ -160,7 +161,7 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
     }
 
     # Buscador de relaciones por casa 
-    dash.ts.act.p <- function(house,p1, act1, p2, act2) {
+    dash.ts.act.pers <- function(house,p1, act1, p2, act2) {
       if(house=='A'){
         if(p1=='P1'){
           ts1 <- ts.univar(houseA.p1.freq,act1,1,7)
@@ -174,8 +175,6 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
           ts2 <- ts.univar(houseA.p2.freq,act2,1,7)
         }
         
-        P <- autoplot(as.zoo(cbind(ts1,ts2)), facet=NULL)
-        return(P)
       }
       if(house=='B'){
         if(p1=='P1'){
@@ -190,9 +189,7 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
           ts2 <- ts.univar(houseB.p2.freq,act2,1,7)
         }
         
-        P <- autoplot(as.zoo(cbind(ts1,ts2)), facet=NULL)
-        return(P)
       }
+
+      return(ts.plot(cbind(ts1,ts2)))
     }
-
-
