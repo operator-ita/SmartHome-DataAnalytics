@@ -8,10 +8,11 @@
 #
 
 library(shiny)
+library(shinydashboard)
+library(shinythemes)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
-    
     dashboardPage(
         
         skin = "purple",
@@ -21,10 +22,10 @@ shinyUI(fluidPage(
         dashboardSidebar(
             
             sidebarMenu(
-                menuItem("Histograma", tabName = "Dashboard", icon = icon("dashboard")),
-                menuItem("Dispersión", tabName = "graph", icon = icon("area-chart")),
-                menuItem("Data Table", tabName = "data_table", icon = icon("table")),
-                menuItem("Imágen", tabName = "img", icon = icon("file-picture-o"))
+                menuItem("Overview", tabName = "Dashboard", icon = icon("dashboard")),
+                menuItem("Series de tiempo", tabName = "graph", icon = icon("area-chart")),
+                menuItem("", tabName = "data_table", icon = icon("table")),
+                menuItem("Imagen", tabName = "img", icon = icon("file-picture-o"))
             )
             
         ),
