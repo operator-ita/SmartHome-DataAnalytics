@@ -22,10 +22,10 @@ shinyUI(fluidPage(
         dashboardSidebar(
             
             sidebarMenu(
-                menuItem("Overview", tabName = "Dashboard", icon = icon("dashboard")),
-                menuItem("Series de tiempo", tabName = "graph", icon = icon("area-chart")),
-                menuItem("", tabName = "data_table", icon = icon("table")),
-                menuItem("Imagen", tabName = "img", icon = icon("file-picture-o"))
+                menuItem("Overview", tabName = "Overview", icon = icon("dashboard")),
+                menuItem("Series de tiempo", tabName = "timeseries", icon = icon("area-chart")),
+                menuItem("Tipo de Actividad", tabName = "data_table", icon = icon("table")),
+                menuItem("Misc", tabName = "img", icon = icon("file-picture-o"))
             )
             
         ),
@@ -35,7 +35,7 @@ shinyUI(fluidPage(
             tabItems(
                 
                 # Histograma
-                tabItem(tabName = "Dashboard",
+                tabItem(tabName = "Overview",
                         fluidRow(
                             titlePanel("Histograma de las variables del data set mtcars"), 
                             selectInput("x", "Seleccione el valor de X",
@@ -54,7 +54,7 @@ shinyUI(fluidPage(
                 ),
                 
                 # Dispersión
-                tabItem(tabName = "graph", 
+                tabItem(tabName = "timeseries", 
                         fluidRow(
                             titlePanel(h3("Gráficos de dispersión")),
                             selectInput("a", "Selecciona el valor de x",

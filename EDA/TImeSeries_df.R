@@ -55,7 +55,7 @@ houseB.p1.freq <- freq.tb(houseB$P1, houseA$day, 1, 30)
 houseB.p2.freq <- freq.tb(houseB$P2, houseA$day, 1, 30)
 
 
-write.csv(houseA.p1.freq , file='houseA-p1-freq.csv', row.names=FALSE)
-write.csv(houseA.p2.freq , file='houseA-p2-freq.csv', row.names=FALSE)
-write.csv(houseB.p1.freq , file='houseB-p1-freq.csv', row.names=FALSE)
-write.csv(houseB.p2.freq , file='houseB-p2-freq.csv', row.names=FALSE)
+write.csv(houseA.p1.freq , file='houseA-p1-freqbyday.csv', row.names=FALSE)
+write.csv(houseA.p2.freq , file='houseA-p2-freqbyday.csv', row.names=FALSE)
+write.csv(houseB.p1.freq , file='houseB-p1-freqbyday.csv', row.names=FALSE)
+write.csv(houseB.p2.freq , file='houseB-p2-freqbyday.csv', row.names=FALSE)

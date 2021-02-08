@@ -1,5 +1,5 @@
-houseA <- read.csv('./data/rdata/houseA_.csv')
-houseB <- read.csv('./data/rdata/houseB_.csv')
+houseA <- read.csv('./data/Aras/houseA_.csv')
+houseB <- read.csv('./data/Aras/houseB_.csv')
 
 # Primero vamos a remover valores perdidos
 library(dplyr)
@@ -74,14 +74,16 @@ round(chisqA$expected,2)
 round(chisqA$residuals, 3)
 library(corrplot)
 library(ggplot2)
-residualsA <- corrplot(chisqA$residuals, is.cor = FALSE)
+residualsA <- corrplot(t(chisqA$residuals), is.cor = FALSE, 
+                       title = "Residuales Casa A")
 
 chisqB <- chisq.test(houseB_table)
 chisqB$observed
 round(chisqB$expected,2)
 round(chisqB$residuals, 3)
 library(corrplot)
-residualsB <- corrplot(chisqB$residuals, is.cor = FALSE)
+residualsB <- corrplot(t(chisqB$residuals), is.cor = FALSE, 
+                       title = "Residuales Casa B")
 
 
 
