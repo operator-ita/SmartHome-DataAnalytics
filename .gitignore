@@ -10,5 +10,4 @@ ldrF.csv
 # Ignorar las capetas con db debido al peso
 houses_with_time/
 renamed_columns/
-frequency_tables/
 Aras_datasets/
