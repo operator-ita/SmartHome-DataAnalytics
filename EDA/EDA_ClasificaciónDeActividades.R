@@ -13,10 +13,6 @@ rownames(tableA)[1] <- "Going_Out"
 colnames(tableA)[1] <- "Going_Out"
 
 tableB <- table(houseB_f$P1, houseB_f$P2)
-
-# Extrayendo actividades que las parejas hacen al mismo tiempo
-both_A <- diag(as.matrix(tableA[common_act_A,common_act_A]))
-both_B <- diag(as.matrix(tableB[common_act_B,common_act_B]))
   
   # Tablas de contingencia para cada persona de la casa
   tableA_P1 <- table(houseA_f$P1)
@@ -42,6 +38,10 @@ both_B <- diag(as.matrix(tableB[common_act_B,common_act_B]))
   tableB_P1_common <- tableB_P1[common_act_B]
   tableB_P2_common <- tableB_P2[common_act_B]
 
+  # Extrayendo actividades que las parejas hacen al mismo tiempo
+  both_A <- diag(as.matrix(tableA[common_act_A,common_act_A]))
+  both_B <- diag(as.matrix(tableB[common_act_B,common_act_B]))
+  
 # Chi cuadrada
 houseA_table <- cbind(as.vector(tableA_P1_common),as.vector(tableA_P2_common),as.vector(both_A))
 houseB_table <- cbind(as.vector(tableB_P1_common),as.vector(tableB_P2_common),as.vector(both_B))
@@ -52,6 +52,19 @@ colnames(houseA_table) <- c("P1","P2","Juntos")
 rownames(houseB_table) <- common_act_B
 colnames(houseB_table) <- c("P1","P2","Juntos")
 
+      # Tablas de contigencia filtrando actividades triviales/individuales 
+      # (going out, brushing teeth, changing clothes, having shower, napping, other, 
+      # sleeping, toileting, shaving)
+      
+      act_triviales_HA_r <- c(1,2,3,10,14,15,20,23) # P1
+      act_triviales_HA_c <- c(1,2,3,7,11,12,16,17,20) # P2
+      
+      act_triviales_HB_r <- c(1,2,4,9,13,18,21) # P1
+      act_triviales_HB_c <- c(1,2,3,8,10,11,14,15,18) # P2
+      
+      tableA_f <- tableA[-act_triviales_HA_r,-act_triviales_HA_c]
+      tableB_f <- tableB[-act_triviales_HB_r,-act_triviales_HB_c]
+
 houseA_table <- subset(houseA_table, rownames(houseA_table) %in% rownames(tableA_f))
 houseB_table <- subset(houseB_table, rownames(houseB_table) %in% rownames(tableB_f))
 
@@ -60,28 +73,25 @@ chisqA$observed
 round(chisqA$expected,2)
 round(chisqA$residuals, 3)
 library(corrplot)
-corrplot(chisqA$residuals, is.cor = FALSE)
+library(ggplot2)
+residualsA <- corrplot(chisqA$residuals, is.cor = FALSE)
 
 chisqB <- chisq.test(houseB_table)
 chisqB$observed
 round(chisqB$expected,2)
 round(chisqB$residuals, 3)
 library(corrplot)
-corrplot(chisqB$residuals, is.cor = FALSE)
+residualsB <- corrplot(chisqB$residuals, is.cor = FALSE)
 
-# Tablas de contigencia filtrando actividades triviales/individuales 
-# (going out, brushing teeth, changing clothes, having shower, napping, other, 
-# sleeping, toileting, shaving)
 
-act_triviales_HA_r <- c(1,2,3,10,14,15,20,23) # P1
-act_triviales_HA_c <- c(1,2,3,7,11,12,16,17,20) # P2
 
-act_triviales_HB_r <- c(1,2,4,9,13,18,21) # P1
-act_triviales_HB_c <- c(1,2,3,8,10,11,14,15,18) # P2
 
-tableA_f <- tableA[-act_triviales_HA_r,-act_triviales_HA_c]
-tableB_f <- tableB[-act_triviales_HB_r,-act_triviales_HB_c]
 
+
+
+
+
+############### Nada más se queda lo de arriba hasta ahora
 # Filtrando actividades independientes
 
   # P1 casa A (cleaning, having breakfast, laundry, listening to music)
