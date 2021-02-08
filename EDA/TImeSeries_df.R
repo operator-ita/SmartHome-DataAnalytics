@@ -16,7 +16,18 @@ insertar.dia <- function(df, start, end, interval) {
     return(df)
 }
 
-# Función para realizar frecuencia acomulada por día por persona
+# Función para realizar frecuencia acomulada por día por persona PROBANDO 
+freq.tb <- function(col.act, group.by, start, end) {
+    ds <- tapply(col.act, group.by, FUN = count, simplify = TRUE, default = NA)
+    ds <- Reduce(function(x,y)merge(x,y,by="x",all=TRUE), ds)
+    ds[is.na(ds)] <- 0
+    ds <- as.data.frame(ds)
+    names(ds) <- c('Activities', seq(start,end))
+    rownames(ds) <- ds$Activities
+    return(ds)
+}
+
+# Función para realizar frecuencia acomulada por día por persona ERROR
 freq.tb <- function(col.act, group.by, start, end) {
   ds <- tapply(col.act, group.by, FUN = count, simplify = TRUE)
   ds <- Map(cbind, ds, seq(start,end))
@@ -42,6 +53,7 @@ houseA.p1.freq <- freq.tb(houseA$P1, houseA$day, 1, 30)
 houseA.p2.freq <- freq.tb(houseA$P2, houseA$day, 1, 30)
 houseB.p1.freq <- freq.tb(houseB$P1, houseA$day, 1, 30)
 houseB.p2.freq <- freq.tb(houseB$P2, houseA$day, 1, 30)
+
 
 write.csv(houseA.p1.freq , file='houseA-p1-freq.csv', row.names=FALSE)
 write.csv(houseA.p2.freq , file='houseA-p2-freq.csv', row.names=FALSE)
