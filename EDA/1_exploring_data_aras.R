@@ -18,23 +18,23 @@
     head(houseA, n=10L)
     View(houseA)
 
-# Pie Charts
+# Bar Charts
     # Loading and cleaning the frequency tables
-    freq_table_HA_R1 <- read.csv('./data/rdata/Freq_houseA_P1.csv')
+    freq_table_HA_R1 <- read.csv('./data/Freq_houseA_P1.csv')
     freq_table_HA_R1[1,2] <- "Going_Out"
     freq_table_HA_R1[2,2] <- "Missing_Activity"
     names(freq_table_HA_R1)[2] <- "Activity"
     
-    freq_table_HA_R2 <- read.csv('./data/rdata/Freq_houseA_P2.csv')
+    freq_table_HA_R2 <- read.csv('./data/Freq_houseA_P2.csv')
     freq_table_HA_R2[1,2] <- "Going_Out"
     freq_table_HA_R2[2,2] <- "Missing_Activity"
     names(freq_table_HA_R2)[2] <- "Activity"
     
-    freq_table_HB_R1 <- read.csv('./data/rdata/Freq_houseB_P1.csv')
+    freq_table_HB_R1 <- read.csv('./data/Freq_houseB_P1.csv')
     freq_table_HB_R1[1,2] <- "Missing Activity"
     names(freq_table_HB_R1)[2] <- "Activity"
     
-    freq_table_HB_R2 <- read.csv('./data/rdata/Freq_houseB_P2.csv')
+    freq_table_HB_R2 <- read.csv('./data/Freq_houseB_P2.csv')
     freq_table_HB_R2[1,2] <- "Missing Activity"
     names(freq_table_HB_R2)[2] <- "Activity"
     
@@ -52,7 +52,7 @@
         
         bar_HA_R1 <- ggplot(data = freq_table_HA_R1, aes(x = reorder(Activity, Freq), y = Freq)) +
             geom_col(aes(fill = Activity) , show.legend = FALSE) +
-            ggtitle(paste("Time spent on each activity by resident 1 in house A")) +
+            ggtitle(paste("Time spent on each activity by resident 1 in house A during 1 month")) +
             coord_flip() +
             geom_label(aes(label = percent(Freq/sum(Freq), accuracy =  0.001),
                            y = -150, fill = Activity),
@@ -63,7 +63,7 @@
         
         bar_HA_R2 <- ggplot(data = freq_table_HA_R2, aes(x = reorder(Activity, Freq), y = Freq)) +
             geom_col(aes(fill = Activity) , show.legend = FALSE) +
-            ggtitle(paste("Time spent on each activity by resident 2 in house A")) +
+            ggtitle(paste("Time spent on each activity by resident 2 in house A during 1 month")) +
             coord_flip() +
             geom_label(aes(label = percent(Freq/sum(Freq), accuracy =  0.001),
                            y = -150, fill = Activity),
@@ -74,7 +74,7 @@
         
         bar_HB_R1 <- ggplot(data = freq_table_HB_R1, aes(x = reorder(Activity, Freq), y = Freq)) +
             geom_col(aes(fill = Activity) , show.legend = FALSE) +
-            ggtitle(paste("Time spent on each activity by resident 1 in house B")) +
+            ggtitle(paste("Time spent on each activity by resident 1 in house B during 1 month")) +
             coord_flip() +
             geom_label(aes(label = percent(Freq/sum(Freq), accuracy =  0.001),
                            y = -150, fill = Activity),
@@ -85,7 +85,7 @@
         
         bar_HB_R2 <- ggplot(data = freq_table_HB_R2, aes(x = reorder(Activity, Freq), y = Freq)) +
             geom_col(aes(fill = Activity) , show.legend = FALSE) +
-            ggtitle(paste("Time spent on each activity by resident 2 in house B")) +
+            ggtitle(paste("Time spent on each activity by resident 2 in house B during 1 month")) +
             coord_flip() +
             geom_label(aes(label = percent(Freq/sum(Freq), accuracy =  0.001),
                            y = -150, fill = Activity),
