@@ -9,7 +9,7 @@
   <h3 align="center">SmartHome-DataAnalytics</h3>
 
   <p align="center">
-    Análisis estadístico de dos casas inteligentes multiresidenciales para prober toma de desiciones en los rubros de seguridad, salud, dinámica de los habitantes y más.  
+    Análisis estadístico de dos casas inteligentes multiresidenciales para prober de percepción a los datos y brindar toma de desiciones en los rubros de seguridad, salud, dinámica de los habitantes y más.  
     <br />
     <a href="https://github.com/operator-ita/SmartHome-DataAnalytics"><strong>Ver documentación »</strong></a>
     <br />
@@ -31,7 +31,7 @@
     <li>
       <a href="#Acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#Contruido-con-r">Built With</a></li>
+        <li><a href="#Contruido-con-r">Construido con r</a></li>
       </ul>
     </li>
     <li>
@@ -60,16 +60,22 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://bedu.com)
 
-This repo ... 
-
-Here's why:
-* Smart home is the future, yeah! :smile:
 
 
+Imagina que cada segundo se registraran tus movimientos y actividades que realizas en tu casa durante un mes. ¿Sería posible predicir cuánto tiempo vas a dedicar a una actividad? ¿Determinar la dinámica entre las personas en la casa? ¿Saber quién realiza más que haceres?
 
-### Built With
+En éste repo nos hemos propuesto exactamente éso, para lo cual analizamos la base de datos __ARAS__  con un enfoque diferente al problema de múltiples residentes tratandolo como series de tiempo.
 
-The following programmas and libraries were used 
+
+### Justificación 
+* El internet de las cosas es un campo que va en aumento, cada día nuevos dispositivos son agregados a la red de internet. Masivas cantidades de datos sin procesar son generados por sensores y actuadores cada segundo, a la espera de analistas de datos.
+* En las casas multiresidenciales cada persona es una variable, lo que hace el problema de la predicción y el análisis un problema multidimencional, razón por la que éste tipo de problemas suele ser abordado por RRN u otro tipo de redes neuronales. En éste proyecto abordamos el tema con series de tiempo tanto para la predicción como para busqueda de patrones de compartamiento. 
+
+
+
+### Contruido-con-r
+
+El código aquí incluido está realizado en su mayoría en R.  
 * [R](https://rstudio.com/)
 
 
