@@ -43,7 +43,7 @@ crear.ts <- function(df){
                         lapply(df.tbl, function(x) replace(x, is.infinite(x),NA)))
   # Converting houseA into a matrix
   df.mat <- as.matrix(df.tbl)
-  df.ts <- ts(df.mat, start=1, end=30)
+  df.ts <- ts(df.mat, start=1, end=30, frequency=1)
   return(df.ts)
 }
 
@@ -68,6 +68,7 @@ houseB <- read.csv("data/Modified/houseB_time.csv")
 houseA.Frec <- frec.comp(houseA)
 houseA.ts <- crear.ts(houseA.Frec)
 plot(na_interpolation(houseA.ts, option="linear"))
+
 
 houseB.Frec <- frec.comp(houseB)
 houseB.ts <- crear.ts(houseB.Frec)
