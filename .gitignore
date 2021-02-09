@@ -12,4 +12,10 @@ houses_with_time/
 renamed_columns/
 Aras_datasets/
 data/houseB_time.csv
-*.csv
+
+Freq_houseB.csv
+Freq_houseA.csv
+Freq_houseA_P1.csv
+Freq_houseA_P2.csv
+Freq_houseB_P1.csv
+Freq_houseB_P2.csv
