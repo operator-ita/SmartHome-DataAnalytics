@@ -25,13 +25,14 @@ setwd(repo.dir)
 
 # Funciones
 frec.comp <- function(df1, df2, act.vec){
-  new.df <- merge(df1, df2, by="Var1", all.x=T, check.names=F)
-  new.df <- new.df[, c(1,3,5)]
+  new.df <- merge(df1, df2, by="Activity", all.x=T, check.names=F)
   names(new.df) <- c("Activity", "P1", "P2")
   new.df[is.na(new.df)] <- 0
   new.df <- mutate(new.df, P1=P1/60, P2=P2/60)
   return(new.df)
 }
+
+
 
 # Importación de datasets 
 houseA <- read.csv("data/Time/houseA.csv")
@@ -132,16 +133,139 @@ ggsave(images.path + "houseB_P2.png")
 
 
 # Barras de comparación
-images.path <- "images/Comp/houseA_P1.png"
+images.path <- "images/Comp/"
 
+houseA.P1.f <- freq_table_HA_R1
+houseA.P1.f <- mutate(houseA.P1.f, Activity=as.character(Activity))
+houseA.P2.f <- freq_table_HA_R2
+houseA.P2.f <- mutate(houseA.P2.f, Activity=as.character(Activity))
+houseB.P1.f <- freq_table_HB_R1
+houseB.P1.f <- mutate(houseB.P1.f, Activity=as.character(Activity))
+houseB.P2.f <- freq_table_HB_R2
+houseB.P2.f <- mutate(houseB.P2.f, Activity=as.character(Activity))
 
+# Comparación de tiempo invertido en tareas de la casa
+new.freq <- houseA.P1.f$Freq[houseA.P1.f$Activity=="Preparing Breakfast"][2] +
+  houseA.P1.f$Freq[houseA.P1.f$Activity=="Preparing Lunch"][2] +
+  houseA.P1.f$Freq[houseA.P1.f$Activity=="Preparing Dinner"][2]
+houseA.P1.f <- rbind(houseA.P1.f, list("Cooking", new.freq))
 
+new.freq <- houseA.P1.f$Freq[houseA.P1.f$Activity=="Having Breakfast"][2] + 
+  houseA.P1.f$Freq[houseA.P1.f$Activity=="Having Lunch"][2] +
+  houseA.P1.f$Freq[houseA.P1.f$Activity=="Having Dinner"][2]
+houseA.P1.f <- rbind(houseA.P1.f, list("Eating", new.freq))
 
+new.freq <- houseA.P2.f$Freq[houseA.P2.f$Activity=="Preparing Breakfast"] +
+  houseA.P2.f$Freq[houseA.P2.f$Activity=="Preparing Dinner"]
+houseA.P2.f <- rbind(houseA.P2.f, list("Cooking", new.freq))
 
+new.freq <- houseA.P2.f$Freq[houseA.P2.f$Activity=="Having Breakfast"] +
+  houseA.P2.f$Freq[houseA.P2.f$Activity=="Having Dinner"]
+houseA.P2.f <- rbind(houseA.P2.f, list("Eating", new.freq))
 
+new.freq <- houseB.P1.f$Freq[houseB.P1.f$Activity=="Preparing Breakfast"] + 
+  houseB.P1.f$Freq[houseB.P1.f$Activity=="Preparing Lunch"] +
+  houseB.P1.f$Freq[houseB.P1.f$Activity=="Preparing Dinner"]
+houseB.P1.f <- rbind(houseB.P1.f, list("Cooking", new.freq))
 
+new.freq <- houseB.P1.f$Freq[houseB.P1.f$Activity=="Having Breakfast"] + 
+  houseB.P1.f$Freq[houseB.P1.f$Activity=="Having Lunch"] 
+houseB.P1.f <- rbind(houseB.P1.f, list("Eating", new.freq))
 
+new.freq <- houseB.P2.f$Freq[houseB.P2.f$Activity=="Preparing Breakfast"]
+houseB.P2.f <- rbind(houseB.P2.f, list("Cooking", new.freq))
 
+new.freq <- houseB.P2.f$Freq[houseB.P2.f$Activity=="Having Breakfast"]+
+  houseB.P2.f$Freq[houseB.P2.f$Activity=="Having Lunch"] +
+  houseB.P2.f$Freq[houseB.P2.f$Activity=="Having Dinner"]
+houseB.P2.f <- rbind(houseB.P2.f, list("Eating", new.freq))
 
+tareas <- c("Cooking", "Washing Dishes", "Laundry", "Cleaning")           
+
+houseA.tareas <- frec.comp(houseA.P1.f, houseA.P2.f)
+houseB.tareas <- frec.comp(houseB.P1.f, houseB.P2.f)
+
+houseA.tareas.m <- mutate(houseA.tareas, P2=-P2)
+houseA.tareas.m <- melt(houseA.tareas.m)
+
+names(houseA.tareas.m) <- c("Actividad", "Persona", "Tiempo")
+
+(p <- ggplot(houseA.tareas.m, 
+             aes(reorder(Actividad, Tiempo), Tiempo, fill=Persona)) + 
+    geom_bar(data=subset(houseA.tareas.m, Persona=="P1"), stat="identity") +
+    geom_bar(data=subset(houseA.tareas.m, Persona=="P2"), stat="identity") +
+    labs(title = "Time spent in home dutties", x = "") +
+    scale_y_continuous(breaks=seq(-600, 1500, 300), 
+                       labels=paste(as.character(c(seq(600, 0, -300), 
+                                                    seq(300, 1500, 300))), "min")) +
+    scale_x_discrete(limit=tareas) +
+    coord_flip() + 
+    theme_stata() + scale_fill_stata())
+ggsave(filename="comparacion_actividades_CasaA.png", 
+       plot=p, 
+       path=images.path)
+
+houseB.tareas.m <- mutate(houseB.tareas, P2=-P2)
+houseB.tareas.m <- melt(houseB.tareas.m)
+houseB.tareas.m
+names(houseB.tareas.m) <- c("Actividad", "Persona", "Tiempo")
+(p <- ggplot(houseB.tareas.m, 
+             aes(Actividad, Tiempo, fill=Persona)) + 
+    geom_bar(data=subset(houseB.tareas.m, Persona=="P1"), stat="identity") +
+    geom_bar(data=subset(houseB.tareas.m, Persona=="P2"), stat="identity") +
+    scale_y_continuous(breaks = seq(-600, 600, 100), 
+                       labels = paste(as.character(c(seq(600, 0, -100), 
+                                                      seq(100, 600, 100))), "min")) +
+    scale_x_discrete(limit=tareas) +
+    labs(title = "Time spent in home dutties", x="") +
+    coord_flip() + 
+    theme_stata() + scale_fill_stata())
+ggsave(filename="comparacion_actividades_CasaB.png", 
+       plot=p, 
+       path=images.path)
+
+# Comparación de tiempo invertido en actividades recreativas
+rec <- c("Going Out", "Watching TV", "Napping", "Eating","Listening to Music", "Having Guest")           
+
+houseA.rec <- frec.comp(houseA.P1.f, houseA.P2.f)
+houseB.rec <- frec.comp(houseB.P1.f, houseB.P2.f)
+
+houseA.rec <- mutate(houseA.rec, P1=P1/60, P2=P2/60)
+houseA.rec.m <- mutate(houseA.rec, P2=-P2)
+houseA.rec.m <- melt(houseA.rec.m)
+names(houseA.rec.m) <- c("Actividad", "Persona", "Tiempo")
+(p <- ggplot(houseA.rec.m, 
+             aes(Actividad, Tiempo, fill=Persona)) + 
+    geom_bar(data=subset(houseA.rec.m, Persona=="P1"), stat="identity") +
+    geom_bar(data=subset(houseA.rec.m, Persona=="P2"), stat="identity") +
+    labs(title = "Time spento to recreative activities", x = "") +
+    scale_y_continuous(breaks = seq(-500, 200, 100), 
+                       labels = paste(as.character(c(seq(500, 0, -100), 
+                                                      seq(100, 200, 100))), "h")) +
+    scale_x_discrete(limit=rec) +
+    coord_flip() + 
+    theme_stata() + scale_fill_stata())
+ggsave(filename="comparacion_recreacion_CasaA.png", 
+       plot=p, 
+       path=images.path)
+
+houseB.rec <- mutate(houseB.rec, P1=P1/60, P2=P2/60)
+houseB.rec.m <- mutate(houseB.rec, P2=-P2)
+houseB.rec.m <- melt(houseB.rec.m)
+names(houseB.rec.m) <- c("Actividad", "Persona", "Tiempo")
+(p <- ggplot(houseB.rec.m, 
+             aes(Actividad, Tiempo, fill=Persona)) + 
+    geom_bar(data=subset(houseB.rec.m, Persona=="P1"), stat="identity") +
+    geom_bar(data=subset(houseB.rec.m, Persona=="P2"), stat="identity") +
+    labs(title = "Time spento to recreative activities", x = "") +
+    scale_y_continuous(breaks = seq(-800, 300, 75), 
+                       labels = paste(as.character(c(seq(800, 0, -75), 
+                                                      seq(75, 300, 75))), "h")) +
+    scale_x_discrete(limit=rec) +
+    coord_flip() + 
+    theme_stata() + scale_fill_stata())
+ggsave(filename="comparacion_recreacion_CasaB.png", 
+       plot=p, 
+       path=images.path)
 
 setwd(repo.dir)
