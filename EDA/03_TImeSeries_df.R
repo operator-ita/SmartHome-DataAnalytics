@@ -1,3 +1,6 @@
+# @Proyecto: Predicción de comportamiento en una casa inteligente
+# @Equipo: 14
+
 # Librerías
 library(dplyr)
 library(plyr)
@@ -40,8 +43,8 @@ freq.tb <- function(col.act, group.by, start, end) {
 
 
 # Importación de datasets 
-houseA <- read.csv("data/houses_with_time/houseA_time.csv")
-houseB <- read.csv("data/houses_with_time/houseB_time.csv")
+houseA <- read.csv("data/Time/houseA_time.csv")
+houseB <- read.csv("data/Time/houseB_time.csv")
 
 # Insertar columna de día 
 houseA <- insertar.dia(houseA, start=1, end=30, interval=86400)
@@ -55,6 +58,7 @@ houseB.p1.freq <- freq.tb(houseB$P1, houseA$day, 1, 30)
 houseB.p2.freq <- freq.tb(houseB$P2, houseA$day, 1, 30)
 
 
+setwd("data/Frequency")
 write.csv(houseA.p1.freq , file='houseA-p1-freqbyday.csv', row.names=FALSE)
 write.csv(houseA.p2.freq , file='houseA-p2-freqbyday.csv', row.names=FALSE)
 write.csv(houseB.p1.freq , file='houseB-p1-freqbyday.csv', row.names=FALSE)
