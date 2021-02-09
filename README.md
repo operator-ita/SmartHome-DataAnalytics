@@ -17,7 +17,7 @@
     <br />
     <a href="https://github.com/operator-ita/SmartHome-DataAnalytics">Ver dashboard</a>
     ·
-    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Reportar un error</a>
+    <a href="http://bit.ly/bedu14">Video</a>
     ·
     <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Solicitar un cambio</a>
   </p>
@@ -53,7 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca-del-proyecto
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/operator-ita/SmartHome-DataAnalytics)
+[![Product Name Screen Shot][product-screenshot]](http://bit.ly/bedu14)
 
 
 ### SmartHome-DataAnalytics
@@ -85,6 +85,8 @@ Porques sabesmos que una imagen dice más de mil palabras, incluimos un dashboar
   2. Mediante un cociente de tiempo empleado en recreación contra el tiempo empleado para que haceres en casa se determina el tipo de repatación de trabajo doméstico.
 ![](images/shiny.png)
 
+## Video
+![Link video](http://bit.ly/bedu14)
 
 ## Especificaciones
 ### Contruido-con-r
