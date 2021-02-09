@@ -34,26 +34,19 @@ shinyUI(fluidPage(
             
             tabItems(
                 
-                # Histograma
+                # Overview
                 tabItem(tabName = "Overview",
                         fluidRow(
-                            titlePanel("Histograma de las variables del data set mtcars"), 
-                            selectInput("x", "Seleccione el valor de X",
-                                        choices = names(mtcars)),
-                            
-                            selectInput("zz", "Selecciona la variable del grid", 
-                                        
-                                        choices = c("cyl", "vs", "gear", "carb")),
-                            box(plotOutput("plot1", height = 250)),
-                            
-                            box(
-                                title = "Controls",
-                                sliderInput("bins", "Number of observations:", 1, 30, 15)
-                            )
+                            titlePanel("Informacion basica de actividades por persona"), 
+                            selectInput("casa", "Seleccione la casa",
+                                        choices = c("Casa A", "Casa B")),
+                            selectInput("persona", "Selecciona la persona", 
+                                        choices = c("P1", "P2")),
+                            box(plotOutput("plot1", height = 370, width = 1000)),
                         )
                 ),
                 
-                # Dispersión
+                # Series de tiempo
                 tabItem(tabName = "timeseries", 
                         fluidRow(
                             titlePanel(h3("Gráficos de dispersión")),
