@@ -1,4 +1,4 @@
-# @Proyecto: Predicci�n de comportamiento en una casa inteligente
+# @Proyecto: Predicci�n de comportamiento en una casa inteligente
 # @Equipo: 14
 
 # En este script se realiza una tabla de frecencia de actividades por día por 
@@ -163,10 +163,10 @@ ts.plot.save(houseB.P2.ts.act, "Histórico actividad casa B persona 2", "Activid
 
 # Series de tiempo acomuladas 
 ## Importamos tablas de frecuencia 
-houseA.p1.freq <- read.csv("../data/Frequency/houseA-p1-freqbyday.csv") 
-houseA.p2.freq <- read.csv("../data/Frequency/houseA-p2-freqbyday.csv")
-houseB.p1.freq <- read.csv("../data/Frequency/houseB-p1-freqbyday.csv")
-houseB.p2.freq <- read.csv("../data/Frequency/houseB-p2-freqbyday.csv")
+houseA.p1.freq <- read.csv("./data/Frequency/houseA-p1-freqbyday.csv") 
+houseA.p2.freq <- read.csv("./data/Frequency/houseA-p2-freqbyday.csv")
+houseB.p1.freq <- read.csv("./data/Frequency/houseB-p1-freqbyday.csv")
+houseB.p2.freq <- read.csv("./data/Frequency/houseB-p2-freqbyday.csv")
 
 houseA.p1.freq$Activities
 houseB.p1.freq$Activities
