@@ -7,13 +7,15 @@
 # de cada dataset con una coolumna que describe la hora de cada actividad, el día 
 # y las actividades realizadas por persona como factor. También se generan tablas
 # de frecuencias individuales y conjuntas de las actividades realizadas por los
-# habitantes de cada casa.
+# habitantes de cada casa. Y se generan gráficas que resumen y comparan el tiempo
+# Invertido por los miembros de cada casa a lo largo del mes.
 
 # Librerías
 library(dplyr)
 library(plyr)
 library(tibble)
 library(ggplot2)
+library(reshape2)
 library(scales)
 library(ggthemes)
 
@@ -22,6 +24,14 @@ repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
 
 # Funciones
+frec.comp <- function(df1, df2, act.vec){
+  new.df <- merge(df1, df2, by="Var1", all.x=T, check.names=F)
+  new.df <- new.df[, c(1,3,5)]
+  names(new.df) <- c("Activity", "P1", "P2")
+  new.df[is.na(new.df)] <- 0
+  new.df <- mutate(new.df, P1=P1/60, P2=P2/60)
+  return(new.df)
+}
 
 # Importación de datasets 
 houseA <- read.csv("data/Time/houseA.csv")
@@ -70,6 +80,8 @@ freq_table_HB_R1[order(freq_table_HB_R1$Freq, decreasing = TRUE),]
 freq_table_HB_R2[order(freq_table_HB_R2$Freq, decreasing = TRUE),]
 
 # Creation of bar charts
+images.path <- "images/Frequency/"
+
 bar_HA_R1 <- ggplot(data = freq_table_HA_R1, aes(x = reorder(Activity, Freq), y = Freq)) +
   geom_col(aes(fill = Activity) , show.legend = FALSE) +
   ggtitle(paste("Time spent on each activity by resident 1 in house A during 1 month")) +
@@ -80,7 +92,7 @@ bar_HA_R1 <- ggplot(data = freq_table_HA_R1, aes(x = reorder(Activity, Freq), y 
              size = 3.5, label.padding = unit(0.1, "lines")) +
   expand_limits(y = -150)+
   labs(x = "Activity", y = "Seconds")
-ggsave("images/Frequency/houseA_P1.png")
+ggsave(images.path + "houseA_P1.png")
 
 (bar_HA_R2 <- ggplot(data = freq_table_HA_R2, aes(x = reorder(Activity, Freq), y = Freq)) +
   geom_col(aes(fill = Activity) , show.legend = FALSE) +
@@ -92,7 +104,7 @@ ggsave("images/Frequency/houseA_P1.png")
              size = 3.5, label.padding = unit(0.1, "lines")) +
   expand_limits(y = -150)+
   labs(x = "Activity", y = "Seconds"))
-ggsave("images/Frequency/houseA_P2.png")
+ggsave(images.path + "houseA_P2.png")
 
 (bar_HB_R1 <- ggplot(data = freq_table_HB_R1, aes(x = reorder(Activity, Freq), y = Freq)) +
   geom_col(aes(fill = Activity) , show.legend = FALSE) +
@@ -104,7 +116,7 @@ ggsave("images/Frequency/houseA_P2.png")
              size = 3.5, label.padding = unit(0.1, "lines")) +
   expand_limits(y = -150)+
   labs(x = "Activity", y = "Seconds"))
-ggsave("images/Frequency/houseB_P1.png")
+ggsave(images.path + "houseB_P1.png")
 
 (bar_HB_R2 <- ggplot(data = freq_table_HB_R2, aes(x = reorder(Activity, Freq), y = Freq)) +
   geom_col(aes(fill = Activity) , show.legend = FALSE) +
@@ -116,6 +128,20 @@ ggsave("images/Frequency/houseB_P1.png")
              size = 3.5, label.padding = unit(0.1, "lines")) +
   expand_limits(y = -150)+
   labs(x = "Activity", y = "Seconds"))
-ggsave("images/Frequency/houseB_P2.png")
+ggsave(images.path + "houseB_P2.png")
+
+
+# Barras de comparación
+images.path <- "images/Comp/houseA_P1.png"
+
+
+
+
+
+
+
+
+
+
 
 setwd(repo.dir)
