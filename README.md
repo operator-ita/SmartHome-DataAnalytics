@@ -14,14 +14,13 @@
     <a href="https://github.com/operator-ita/SmartHome-DataAnalytics"><strong>Ver documentación »</strong></a>
     <br />
     <br />
-    <a href="https://www.youtube.com/watch?v=7yh9i0PAjck&ab_channel=cosmicrat">Ver dashboard</a>
+    <a href="https://github.com/operator-ita/SmartHome-DataAnalytics">Ver dashboard</a>
     ·
     <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Reportar un error</a>
     ·
     <a href="https://github.com/operator-ita/SmartHome-DataAnalytics/issues">Solicitar un cambio</a>
   </p>
 </p>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -36,7 +35,7 @@
       </ul>
     </li>
     <li>
-      <a href="#Dashboard dinámico en shiny">Dashboard en Shiny</a>
+      <a href="#Dashboard">Dashboard en Shiny</a>
       <ul>
         <li><a href="#Especificaciones">Especificaciones</a></li>
       </ul>
@@ -49,11 +48,10 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## Acerca-del-proyecto
 
-[![Product Name Screen Shot][product-screenshot]](https://bedu.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/operator-ita/SmartHome-DataAnalytics)
 
 
 ### SmartHome-DataAnalytics
@@ -70,7 +68,7 @@ En éste repo nos hemos propuesto exactamente éso, para lo cual analizamos la b
 
 
 <!-- GETTING STARTED -->
-## Dashboard dinámico en shiny
+## Dashboard
 Porques sabesmos que una imagen dice más de mil palabras, incluimos un dashboard dinámico con la libraría de `shiny`. Da click a la liga para explorar el compartamiento de las personas en cada casa. El contenido está dividido en: 
 - Pestaña general: Un gráfica de barra dinámica de como emplea el tiempo cada uno de los sujetos de estudio en su casa. 
 - Series de tiempo: 
@@ -113,13 +111,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contacto
 Equipo 14: 
-
-- Mario Cantu 
-- Luis Fernando 
 - Lara Guzmán Elías David
-
-Liga del proyecto: [@Github Repo](https://github.com/your_username/repo_name)
-
+- Luis Fernando Jiménez Hernández
+- Mario Alan Cantú Cantero
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Referencias
@@ -129,7 +123,6 @@ Liga del proyecto: [@Github Repo](https://github.com/your_username/repo_name)
 <!-- Resources -->
 ## Recursos 
 * [CONDA](https://docs.anaconda.com/anaconda/user-guide/tasks/using-r-language/)
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
