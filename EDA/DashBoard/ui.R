@@ -46,8 +46,10 @@ shinyUI(fluidPage(
                         ),
                         fluidRow(
                             titlePanel("Comparacion de actividades"),
-                            selectInput("casa", "Selecciona la casa", choices = 
-                                            c("Casa A", "Casa B"))
+                            selectInput("casa2", "Selecciona la casa", choices = 
+                                            c("Casa A", "Casa B")),
+                            selectInput("tipoAct", "Selecciona la tarea", choices =
+                                            c("Deberes", "Recreativas")),
                             box(plotOutput("plot_P1vsP2_act"))
                         )
                 ),
