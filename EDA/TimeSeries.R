@@ -1,8 +1,8 @@
-# @Proyecto: 
+# @Proyecto: Predicci�n de comportamiento en una casa inteligente
 # @Equipo: 14
 
-# En este script se realiza una tabla de frecencia de actividades por día por persona de cada casa 
-# y se grafican sus series de tiempo 
+# En este script se realiza una tabla de frecencia de actividades por día por 
+# persona de cada casa y se grafican sus series de tiempo 
 
 # Librerías
 library(dplyr)
@@ -14,16 +14,14 @@ library(zoo) # install.packages("zoo")
 library(ggthemes) # install.packages("ggthemes")
 
 # Directorio de trabajo
-repo.dir <- "" 
+repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
-
-
+setwd("EDA")
 # Funciones
 # Función para crear una serie univariada
 ts.univar <- function(df, actividad, start_, frecuency_) {
   # Filtering activity
   df <- df[df$Activities==actividad,]
-  # df <- na.omit(df)
   vector <- t(as.vector(select(df, 2:31)))
   # Convertimos los datos en serie de tiempo con el comando ts
   tsb <- ts(vector,  start=1,  frequency = frecuency_)
@@ -57,7 +55,6 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
   sdf <- t(sdf)
   # Convertimos los datos en serie de tiempo con el comando ts
   tsb <- ts(sdf, start = start_, frequency = frecuency_)
-  # Regresamos la serie de tiempo
   return(tsb)
 }
 
@@ -144,8 +141,8 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
 # Serie de tiempo univariada del historico por actividad por persona
 
     ## Importamos datos 
-    houseA <- read.csv("data/houses_with_time/houseA_time.csv")
-    houseB <- read.csv("data/houses_with_time/houseB_time.csv")
+    houseA <- read.csv("data/Time/houseA_time.csv")
+    houseB <- read.csv("data/Time/houseB_time.csv")
 
     ## Serie de actividades por persona por día del día 1 al 30  
     houseA.P1.ts.act <- ts(as.vector(t(houseA$X21)), start=1, end=7, frequency=86400)
@@ -169,10 +166,10 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
 # Series de tiempo acomuladas 
 
     ## Importamos tablas de frecuencia 
-    houseA.p1.freq <- read.csv("data/frequency_tables_days/houseA-p1-freqbyday.csv") 
-    houseA.p2.freq <- read.csv("data/frequency_tables_days/houseA-p2-freqbyday.csv")
-    houseB.p1.freq <- read.csv("data/frequency_tables_days/houseB-p1-freqbyday.csv")
-    houseB.p2.freq <- read.csv("data/frequency_tables_days/houseB-p2-freqbyday.csv")
+    houseA.p1.freq <- read.csv("data/Frequency/houseA-p1-freqbyday.csv") 
+    houseA.p2.freq <- read.csv("data/Frequency/houseA-p2-freqbyday.csv")
+    houseB.p1.freq <- read.csv("data/Frequency/houseB-p1-freqbyday.csv")
+    houseB.p2.freq <- read.csv("data/Frequency/houseB-p2-freqbyday.csv")
 
     houseA.p1.freq$Activities
     houseB.p1.freq$Activities
