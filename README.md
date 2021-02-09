@@ -31,27 +31,22 @@
     <li>
       <a href="#Acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#Contruido-con-r">Construido con r</a></li>
+        <li><a href="#SmartHome-DataAnalytics">SmartHome</a></li>
+        <li><a href="#Justificación">Justificación</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Configuraciones iniciales">Getting Started</a>
+      <a href="#Dashboard dinámico en shiny">Dashboard en Shiny</a>
       <ul>
-        <li><a href="#Prerequisitos">Prerequisites</a></li>
-        <li><a href="#Instalación">Installation</a></li>
+        <li><a href="#Especificaciones">Especificaciones</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-    <li><a href="#resources">Resources</a></li>
+    <li><a href="#Datasets">Bases de datos</a></li>
+    <li><a href="#Contacto">Contacto</a></li>
+    <li><a href="#Referencias">Referencias</a></li>
+    <li><a href="#Recursos">Recursos</a></li>
   </ol>
 </details>
-
-
-
 
 
 
@@ -61,11 +56,12 @@
 [![Product Name Screen Shot][product-screenshot]](https://bedu.com)
 
 
-
-Imagina que cada segundo se registraran tus movimientos y actividades que realizas en tu casa durante un mes. ¿Sería posible predicir cuánto tiempo vas a dedicar a una actividad? ¿Determinar la dinámica entre las personas en la casa? ¿Saber quién realiza más que haceres?
+### SmartHome-DataAnalytics
+Imagina que cada segundo se registraran tus movimientos y actividades que realizas en tu casa durante un mes ¿Sería posible predicir cuánto tiempo vas a dedicar a una actividad? ¿Determinar la dinámica entre las personas en la casa? ¿Saber quién realiza más que haceres?
 
 En éste repo nos hemos propuesto exactamente éso, para lo cual analizamos la base de datos __ARAS__  con un enfoque diferente al problema de múltiples residentes tratandolo como series de tiempo.
 
+Éste proyecto fué entragado como evaluación para el bootcamp de Data analyst de __BEDU__.  
 
 ### Justificación 
 * El internet de las cosas es un campo que va en aumento, cada día nuevos dispositivos son agregados a la red de internet. Masivas cantidades de datos sin procesar son generados por sensores y actuadores cada segundo, a la espera de analistas de datos.
@@ -73,86 +69,65 @@ En éste repo nos hemos propuesto exactamente éso, para lo cual analizamos la b
 
 
 
+<!-- GETTING STARTED -->
+## Dashboard dinámico en shiny
+Porques sabesmos que una imagen dice más de mil palabras, incluimos un dashboard dinámico con la libraría de `shiny`. Da click a la liga para explorar el compartamiento de las personas en cada casa. El contenido está dividido en: 
+- Pestaña general: Un gráfica de barra dinámica de como emplea el tiempo cada uno de los sujetos de estudio en su casa. 
+- Series de tiempo: 
+  1. Series de tiempo por día del tiempo empleado en cada actividad por persona y su descomposición adivitiva para observar si existe alguna rutina.    
+  2. Buscador de variables dependientes graficando dos series de tiempo multivariables. 
+- Tipo de actividad: La dinámica de interacción entre los recidentes se explora con el tiempo que pasan realizando actividades colaborativas y la repartición del trabajo.  
+  1. Las actividades colaborativas se determinan apartir del tiempo en que ambos realizan la misma actividad. 
+  2. Mediante un cociente de tiempo empleado en recreación contra el tiempo empleado para que haceres en casa se determina el tipo de repatación de trabajo doméstico.
+![](images/shiny.png)
+
+
+## Especificaciones
 ### Contruido-con-r
 
-El código aquí incluido está realizado en su mayoría en R.  
+El código aquí incluido está realizado en su totalidad en R.  
 * [R](https://rstudio.com/)
 
-
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-Try the same procedure to your our data. Here is how: 
-
-### Prerequisites
-- Anaconda
-- Rstudio
-
-1. Create a environment 
-  ```sh
-  conda create --prefix=/home/david/github/data-science/bedu/Programacion-con-R-Santander/r-environment r-essentials r-base
-  ```
-
-### Installation
-
- 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/operator-ita/SmartHome-DataAnalytics
-   ```
-2. Load our R environment
-   ```sh
-   conda activate renv
-   ```
-3. Deactivate
-  ```sh
-  conda dactivate
-  ```
-
-
+### Prerequisitos 
+- Rstudio instalados
 
 <!-- USAGE EXAMPLES -->
 ## Datasets
 
 ### Aras Database
 
-_For more info, refer to [Aras Documentation](https://www.researchgate.net/publication/261054388_ARAS_Human_Activity_Datasets_in_Multiple_Homes_with_Multiple_Residentsm)_
+_Para más información de la base de datos, refierase a [Aras Documentation](https://www.researchgate.net/publication/261054388_ARAS_Human_Activity_Datasets_in_Multiple_Homes_with_Multiple_Residentsm)_
 
 
 
 <!-- CONTRIBUTING -->
-## To do
+## Por hacer
 
-- [ ] Activity prediction on ARAS dataset
-- [ ] Security improvements
-- [ ] Improvements in energy saving
-- [ ] Health alert for bad habits
-- [ ] Comfort
-- [ ] More
+- [ ] Comparar el análisis realizado con series de tiempo contra el obtenido con RNN
 
 <!-- LICENSE -->
-## License
-
+## Licencia
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
 <!-- CONTACT -->
-## Contact
+## Contacto
+Equipo 14: 
 
-Lara Guzmán Elías David - [@Linkedin](https://www.linkedin.com/in/fi-eguzman/) 
+- Mario Cantu 
+- Luis Fernando 
+- Lara Guzmán Elías David
 
-Project Link: [@Github Repo](https://github.com/your_username/repo_name)
-
+Liga del proyecto: [@Github Repo](https://github.com/your_username/repo_name)
 
 
 <!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+## Referencias
 * [ARAS Dataset](http://aras.cmpe.boun.edu.tr/download.php)
 * [BEDU](https://bedu.org/)
 
 <!-- Resources -->
-## Resources
+## Recursos 
 * [CONDA](https://docs.anaconda.com/anaconda/user-guide/tasks/using-r-language/)
 
 
