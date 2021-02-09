@@ -10,6 +10,8 @@
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
+library(ggplot2)
+library(scales)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -18,17 +20,53 @@ shinyServer(function(input, output) {
     #Gráfico de Histograma
     output$plot1 <- renderPlot({
         
-        x <- mtcars[,input$x]
-        bin <- seq(min(x), max(x), length.out = input$bins + 1)
+        # Bar Charts
+        # Loading and cleaning the frequency tables
+        freq_table_HA_R1 <- read.csv('Freq_houseA_P1.csv')
+        freq_table_HA_R1[1,2] <- "Going_Out"
+        freq_table_HA_R1[2,2] <- "Missing_Activity"
+        names(freq_table_HA_R1)[2] <- "Activity"
         
-        ggplot(mtcars, aes(x, fill = mtcars[,input$zz])) + 
-            geom_histogram( breaks = bin) +
-            labs( xlim = c(0, max(x))) + 
-            theme_light() + 
-            xlab(input$x) + ylab("Frecuencia") + 
-            facet_grid(input$zz)
+        freq_table_HA_R2 <- read.csv('Freq_houseA_P2.csv')
+        freq_table_HA_R2[1,2] <- "Going_Out"
+        freq_table_HA_R2[2,2] <- "Missing_Activity"
+        names(freq_table_HA_R2)[2] <- "Activity"
         
+        freq_table_HB_R1 <- read.csv('Freq_houseB_P1.csv')
+        freq_table_HB_R1[1,2] <- "Missing Activity"
+        names(freq_table_HB_R1)[2] <- "Activity"
         
+        freq_table_HB_R2 <- read.csv('Freq_houseB_P2.csv')
+        freq_table_HB_R2[1,2] <- "Missing Activity"
+        names(freq_table_HB_R2)[2] <- "Activity"
+        
+        # Creation of charts
+        # Sorting Frequencies
+        freq_table_HA_R1[order(freq_table_HA_R1$Freq, decreasing = TRUE),]    
+        freq_table_HA_R2[order(freq_table_HA_R2$Freq, decreasing = TRUE),]
+        freq_table_HB_R1[order(freq_table_HB_R1$Freq, decreasing = TRUE),]
+        freq_table_HB_R2[order(freq_table_HB_R2$Freq, decreasing = TRUE),]
+        
+        if (input$casa == "Casa A" & input$persona == "P1"){
+            opcion = freq_table_HA_R1
+        } else if (input$casa == "Casa A" & input$persona == "P2") {
+            opcion = freq_table_HA_R2
+        } else if (input$casa == "Casa B" & input$persona == "P1") {
+            opcion = freq_table_HB_R1
+        } else if (input$casa == "Casa B" & input$persona == "P2") {
+            opcion = freq_table_HB_R2
+        }
+        
+        # Creation of bar charts
+        ggplot(data = opcion, aes(x = reorder(Activity, Freq), y = Freq)) +
+            geom_col(aes(fill = Activity) , show.legend = FALSE) +
+            coord_flip() +
+            geom_label(aes(label = percent(Freq/sum(Freq), accuracy =  0.001),
+                           y = -150, fill = Activity),
+                       show.legend = FALSE,
+                       size = 3.5, label.padding = unit(0.1, "lines")) +
+            expand_limits(y = -150)+
+            labs(x = "Activity", y = "Seconds")
     })
     
     # Gráficas de dispersión
