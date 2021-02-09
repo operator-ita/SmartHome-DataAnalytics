@@ -1,9 +1,29 @@
-houseA <- read.csv('./data/Aras/houseA_.csv')
-houseB <- read.csv('./data/Aras/houseB_.csv')
+# @Proyecto: PredicciÃ³n de comportamiento en una casa inteligente
+# @Equipo: 14
+
+# Este script hace una correlación chi^2 para asociar actividades a personas.
+
+# LibrerÃ­as
+library(dplyr)
+library(tidyr)
+library(reshape2)
+library(imputeTS)
+library(ggthemes)
+library(zoo)
+library(ggplot2)
+library(corrplot)
+library("graphics")
+library("vcd")
+
+# Directorio de trabajo
+repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
+setwd(repo.dir)
+setwd("03_Clasificacion")
+
+houseA <- read.csv('data/Time/houseA.csv')
+houseB <- read.csv('data/Time/houseB.csv')
 
 # Primero vamos a remover valores perdidos
-library(dplyr)
-
 # Tablas de contingencia de las dos casas para todas las actividades
 houseA_f <- filter(houseA, P1 != 0, P2 != 0)
 houseB_f <- filter(houseB, P1 != 0, P2 != 0)
@@ -72,8 +92,7 @@ chisqA <- chisq.test(houseA_table)
 chisqA$observed
 round(chisqA$expected,2)
 round(chisqA$residuals, 3)
-library(corrplot)
-library(ggplot2)
+
 residualsA <- corrplot(t(chisqA$residuals), is.cor = FALSE, 
                        title = "Residuales Casa A")
 
@@ -81,7 +100,7 @@ chisqB <- chisq.test(houseB_table)
 chisqB$observed
 round(chisqB$expected,2)
 round(chisqB$residuals, 3)
-library(corrplot)
+
 residualsB <- corrplot(t(chisqB$residuals), is.cor = FALSE, 
                        title = "Residuales Casa B")
 
@@ -124,12 +143,14 @@ rownames(tableB_f2) <- c(1:length(rownames(tableB_f2)))
 colnames(tableB_f2) <- c(1:length(colnames(tableB_f2)))
 
 # Visualización de actividades no triviales ni individuales de cada casa
-library("graphics")
+
 mosaicplot(tableA_f2, shade = TRUE, main = "Actividades en casa A", xlab = 
              "Actividades de P1", ylab = "Actividades de P2")
 mosaicplot(tableB_f2, shade = TRUE, main = "Actividades en casa B", xlab = 
              "Actividades de P1", ylab = "Actividades de P2")
 
-library("vcd")
+
 assoc(tableA_f2, shade = TRUE, las = 3)
 assoc(tableB_f2, shade = TRUE, las = 3)
+
+setwd(repo.dir)

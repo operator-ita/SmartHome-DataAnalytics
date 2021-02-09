@@ -55,7 +55,10 @@ houseB <- mutate(houseB, time=as.POSIXct(time, format="%H:%M:%S"))
 # House A
 houseA.Frec <- frec.comp(houseA)
 houseA.ts <- crear.ts(houseA.Frec)
+houseB.Frec <- frec.comp(houseB)
+houseB.ts <- crear.ts(houseB.Frec)
 
+setwd("02_TimeSeries")
 tv.ts <- houseA.ts[,10]
 (P <- autoplot(as.zoo(tv.ts), facet=NULL) + 
   theme_stata() + scale_fill_stata()  +
@@ -70,10 +73,10 @@ dishes.ts <-houseA.ts[,9]
     labs(x = "Days", y = "Q"))
 ggsave("A_dishes_ts.png")
   
-
-
-plot(na_interpolation(houseA.ts, option="linear"))
+(plot(na_interpolation(houseA.ts, option="linear")))
 ggsave("Q_houseA.png")
 
 plot(na_interpolation(houseB.ts, option="linear"))
 ggsave("Q_houseB.png")
+
+setwd(repo.dir)
