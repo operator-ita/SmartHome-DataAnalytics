@@ -83,7 +83,7 @@ shinyServer(function(input, output) {
     })   
     
     #Data Table
-    output$data_table <- renderDataTable( {mtcars}, 
+    output$act_type <- renderDataTable( {mtcars}, 
                                           options = list(aLengthMenu = c(5,25,50),
                                                          iDisplayLength = 5)
     )

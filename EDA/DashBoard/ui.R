@@ -24,7 +24,7 @@ shinyUI(fluidPage(
             sidebarMenu(
                 menuItem("Overview", tabName = "Overview", icon = icon("dashboard")),
                 menuItem("Series de tiempo", tabName = "timeseries", icon = icon("area-chart")),
-                menuItem("Tipo de Actividad", tabName = "data_table", icon = icon("table")),
+                menuItem("Tipo de Actividad", tabName = "act_type", icon = icon("table")),
                 menuItem("Misc", tabName = "img", icon = icon("file-picture-o"))
             )
             
@@ -43,6 +43,12 @@ shinyUI(fluidPage(
                             selectInput("persona", "Selecciona la persona", 
                                         choices = c("P1", "P2")),
                             box(plotOutput("plot1", height = 370, width = 1000)),
+                        ),
+                        fluidRow(
+                            titlePanel("Comparacion de actividades"),
+                            selectInput("casa", "Selecciona la casa", choices = 
+                                            c("Casa A", "Casa B"))
+                            box(plotOutput("plot_P1vsP2_act"))
                         )
                 ),
                 
@@ -63,10 +69,10 @@ shinyUI(fluidPage(
                 
                 
                 
-                tabItem(tabName = "data_table",
+                tabItem(tabName = "act_type",
                         fluidRow(        
                             titlePanel(h3("Data Table")),
-                            dataTableOutput ("data_table")
+                            dataTableOutput ("act_type")
                         )
                 ), 
                 
