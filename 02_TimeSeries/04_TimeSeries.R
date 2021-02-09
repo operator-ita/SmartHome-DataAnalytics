@@ -16,7 +16,7 @@ library(ggthemes) # install.packages("ggthemes")
 # Directorio de trabajo
 repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
-setwd("EDA")
+setwd("02_TimeSeries")
 # Funciones
 # Función para crear una serie univariada
 ts.univar <- function(df, actividad, start_, frecuency_) {
@@ -30,7 +30,6 @@ ts.univar <- function(df, actividad, start_, frecuency_) {
   # Regresamos la serie de tiempo
   return(tsb)
 }
-
 
 # Funcion para guardar graficas
 ts.plot.save <- function(ts1, titulo_, ylab_, xlab_, dir) {
@@ -59,148 +58,144 @@ ts.multivar <- function(df, activities, start_, frecuency_) {
 }
 
 # Buscador de relaciones de actividad por persona en una casa 
-    dash.ts.act <- function(house, person, activity) {
-      if(house=='A'){
-        if(person=='P1'){
-          P1 <- ts.univar(houseA.p1.freq,activity,1,7)
-          return(ts.plot(P1))
-        }else if (person=='P2') {
-          P2 <- ts.univar(houseA.p2.freq,activity,1,7)
-          return(ts.plot(P2))
-        }
-      }
-      if(house=='B'){
-        if(person=='P1'){
-          P1 <- ts.univar(houseB.p1.freq,activity,1,7)
-          return(ts.plot(P1))
-        }else if (person=='P2') {
-          P2 <- ts.univar(houseB.p2.freq,activity,1,7)
-          return(ts.plot(P2))
-        }
-      }
+dash.ts.act <- function(house, person, activity) {
+  if(house=='A'){
+    if(person=='P1'){
+      P1 <- ts.univar(houseA.p1.freq,activity,1,7)
+      return(ts.plot(P1))
+    }else if (person=='P2') {
+      P2 <- ts.univar(houseA.p2.freq,activity,1,7)
+      return(ts.plot(P2))
     }
-
-    # Buscador de relaciones de actividad por persona en una casa 
-    dash.dec.act <- function(house, person, activity) {
-      if(house=='A'){
-        if(person=='P1'){
-          P1 <- ts.univar(houseA.p1.freq,activity,1,7)
-          return(plot(decompose(P1)))
-        }else if (person=='P2') {
-          P2 <- ts.univar(houseA.p2.freq,activity,1,7)
-          return(plot(decompose(P2)))
-        }
-      }
-
-      if(house=='B'){
-        if(person=='P1'){
-          P1 <- ts.univar(houseB.p1.freq,activity,1,7)
-          return(plot(decompose(P1)))
-        }else if (person=='P2') {
-          P2 <- ts.univar(houseB.p2.freq,activity,1,7)
-          return(plot(decompose(P2)))
-        }
-      }
+  }
+  if(house=='B'){
+    if(person=='P1'){
+      P1 <- ts.univar(houseB.p1.freq,activity,1,7)
+      return(ts.plot(P1))
+    }else if (person=='P2') {
+      P2 <- ts.univar(houseB.p2.freq,activity,1,7)
+      return(ts.plot(P2))
     }
+  }
+}
 
-    # Buscador de relaciones por casa 
-    dash.ts.act.pers <- function(house,p1, act1, p2, act2) {
-      if(house=='A'){
-        if(p1=='P1'){
-          ts1 <- ts.univar(houseA.p1.freq,act1,1,7)
-        }else if (p1=='P2') {
-          ts1 <- ts.univar(houseA.p2.freq,act1,1,7)
-        }
-        
-        if(p2=='P1'){
-          ts2 <- ts.univar(houseA.p1.freq,act2,1,7)
-        }else if (p2=='P2') {
-          ts2 <- ts.univar(houseA.p2.freq,act2,1,7)
-        }
-        
-      }
-      if(house=='B'){
-        if(p1=='P1'){
-          ts1 <- ts.univar(houseB.p1.freq,act1,1,7)
-        }else if (p1=='P2') {
-          ts1 <- ts.univar(houseB.p2.freq,act1,1,7)
-        }
-        
-        if(p2=='P1'){
-          ts2 <- ts.univar(houseB.p1.freq,act2,1,7)
-        }else if (p2=='P2') {
-          ts2 <- ts.univar(houseB.p2.freq,act2,1,7)
-        }
-        
-      }
-
-      return(ts.plot(cbind(ts1,ts2)))
+# Buscador de relaciones de actividad por persona en una casa 
+dash.dec.act <- function(house, person, activity) {
+  if(house=='A'){
+    if(person=='P1'){
+      P1 <- ts.univar(houseA.p1.freq,activity,1,7)
+      return(plot(decompose(P1)))
+    }else if (person=='P2') {
+      P2 <- ts.univar(houseA.p2.freq,activity,1,7)
+      return(plot(decompose(P2)))
     }
+  }
+
+  if(house=='B'){
+    if(person=='P1'){
+      P1 <- ts.univar(houseB.p1.freq,activity,1,7)
+      return(plot(decompose(P1)))
+    }else if (person=='P2') {
+      P2 <- ts.univar(houseB.p2.freq,activity,1,7)
+      return(plot(decompose(P2)))
+    }
+  }
+}
+
+# Buscador de relaciones por casa 
+dash.ts.act.pers <- function(house,p1, act1, p2, act2) {
+  if(house=='A'){
+    if(p1=='P1'){
+      ts1 <- ts.univar(houseA.p1.freq,act1,1,7)
+    }else if (p1=='P2') {
+      ts1 <- ts.univar(houseA.p2.freq,act1,1,7)
+    }
+    
+    if(p2=='P1'){
+      ts2 <- ts.univar(houseA.p1.freq,act2,1,7)
+    }else if (p2=='P2') {
+      ts2 <- ts.univar(houseA.p2.freq,act2,1,7)
+    }
+    
+  }
+  if(house=='B'){
+    if(p1=='P1'){
+      ts1 <- ts.univar(houseB.p1.freq,act1,1,7)
+    }else if (p1=='P2') {
+      ts1 <- ts.univar(houseB.p2.freq,act1,1,7)
+    }
+    
+    if(p2=='P1'){
+      ts2 <- ts.univar(houseB.p1.freq,act2,1,7)
+    }else if (p2=='P2') {
+      ts2 <- ts.univar(houseB.p2.freq,act2,1,7)
+    }
+    
+  }
+
+  return(ts.plot(cbind(ts1,ts2)))
+}
 
 
 # Serie de tiempo univariada del historico por actividad por persona
 
-    ## Importamos datos 
-    houseA <- read.csv("data/Time/houseA_time.csv")
-    houseB <- read.csv("data/Time/houseB_time.csv")
+## Importamos datos 
+houseA <- read.csv("../data/Time/houseA.csv")
+houseB <- read.csv("../data/Time/houseB.csv")
 
-    ## Serie de actividades por persona por día del día 1 al 30  
-    houseA.P1.ts.act <- ts(as.vector(t(houseA$X21)), start=1, end=7, frequency=86400)
-    houseA.P2.ts.act <- ts(as.vector(t(houseA$X22)), start=1, end=7, frequency=86400)
-    houseB.P1.ts.act <- ts(as.vector(t(houseB$X21)), start=1, end=7, frequency=86400)
-    houseB.P2.ts.act <- ts(as.vector(t(houseB$X22)), start=1, end=7, frequency=86400)
+## Serie de actividades por persona por día del día 1 al 30  
+houseA.P1.ts.act <- ts(as.vector(t(houseA$P1_code)), start=1, end=7, frequency=86400)
+houseA.P2.ts.act <- ts(as.vector(t(houseA$P2_code)), start=1, end=7, frequency=86400)
+houseB.P1.ts.act <- ts(as.vector(t(houseB$P1_code)), start=1, end=7, frequency=86400)
+houseB.P2.ts.act <- ts(as.vector(t(houseB$P2_code)), start=1, end=7, frequency=86400)
 
-    # Observamos las graficas históricas de las actividades por persona
-    ts.plot.save(houseA.P1.ts.act, "Histórico actividad casa A persona 1", "Actividad", "Semanas", "houseA-P1-historico")
-    ts.plot.save(houseA.P2.ts.act, "Histórico actividad casa A persona 2", "Actividad", "Semanas", "houseA-P2-historico")
-    ts.plot.save(houseB.P1.ts.act, "Histórico actividad casa B persona 1", "Actividad", "Semanas", "houseB-P1-historico")
-    ts.plot.save(houseB.P2.ts.act, "Histórico actividad casa B persona 2", "Actividad", "Semanas", "houseB-P2-historico")
+# Observamos las graficas históricas de las actividades por persona
+ts.plot.save(houseA.P1.ts.act, "Histórico actividad casa A persona 1", "Actividad", "Semanas", "houseA-P1-historico")
+ts.plot.save(houseA.P2.ts.act, "Histórico actividad casa A persona 2", "Actividad", "Semanas", "houseA-P2-historico")
+ts.plot.save(houseB.P1.ts.act, "Histórico actividad casa B persona 1", "Actividad", "Semanas", "houseB-P1-historico")
+ts.plot.save(houseB.P2.ts.act, "Histórico actividad casa B persona 2", "Actividad", "Semanas", "houseB-P2-historico")
 
-    # Descomponiendo aditivamente las series
-    ts.plot.save(decompose(houseA.P1.ts.act), "Descomposición aditiva casa A persona 1", "Actividad", "Semanas", "houseA-P1-historico")
-    ts.plot.save(houseA.P2.ts.act, "Histórico actividad casa A persona 2", "Actividad", "Semanas", "houseA-P2-historico")
-    ts.plot.save(houseB.P1.ts.act, "Histórico actividad casa B persona 1", "Actividad", "Semanas", "houseB-P1-historico")
-    ts.plot.save(houseB.P2.ts.act, "Histórico actividad casa B persona 2", "Actividad", "Semanas", "houseB-P2-historico")
-
+# Descomponiendo aditivamente las series
+#ts.plot.save(decompose(houseA.P1.ts.act), "Descomposición aditiva casa A persona 1", "Actividad", "Semanas", "houseA-P1-historico")
+ts.plot.save(houseA.P2.ts.act, "Histórico actividad casa A persona 2", "Actividad", "Semanas", "houseA-P2-historico")
+ts.plot.save(houseB.P1.ts.act, "Histórico actividad casa B persona 1", "Actividad", "Semanas", "houseB-P1-historico")
+ts.plot.save(houseB.P2.ts.act, "Histórico actividad casa B persona 2", "Actividad", "Semanas", "houseB-P2-historico")
 
 # Series de tiempo acomuladas 
+## Importamos tablas de frecuencia 
+houseA.p1.freq <- read.csv("../data/Frequency/houseA-p1-freqbyday.csv") 
+houseA.p2.freq <- read.csv("../data/Frequency/houseA-p2-freqbyday.csv")
+houseB.p1.freq <- read.csv("../data/Frequency/houseB-p1-freqbyday.csv")
+houseB.p2.freq <- read.csv("../data/Frequency/houseB-p2-freqbyday.csv")
 
-    ## Importamos tablas de frecuencia 
-    houseA.p1.freq <- read.csv("data/Frequency/houseA-p1-freqbyday.csv") 
-    houseA.p2.freq <- read.csv("data/Frequency/houseA-p2-freqbyday.csv")
-    houseB.p1.freq <- read.csv("data/Frequency/houseB-p1-freqbyday.csv")
-    houseB.p2.freq <- read.csv("data/Frequency/houseB-p2-freqbyday.csv")
+houseA.p1.freq$Activities
+houseB.p1.freq$Activities
 
-    houseA.p1.freq$Activities
-    houseB.p1.freq$Activities
-    
-    # Explorando patrones 
-    dash.ts.act('A','P2','Napping')    
-    dash.ts.act('B','P1','Having Breakfast')    
-    
-    # Descomposicion
-    dash.dec.act('B','P2',"Toileting")
+# Explorando patrones 
+dash.ts.act('A','P2','Napping')    
+dash.ts.act('B','P1','Having Breakfast')    
 
-    
-    # Explorando relaciones
-    dash.ts.act.pers('A','P1',"Toileting", 'P2',"Toileting")
-    dash.ts.act.pers('B','P1',"Toileting", 'P1','Having Breakfast')
-
-    
-    ## Serie de tiempo multivariada del tiempo acomulado por actividad por persona 
-    ### Actividades por categoría 
-      aseo         <-   c("Having_Shower", "Toileting","Brushing_Teeth")
-      salud        <-   c("Sleeping", "Napping", "Toileting")
-      alimentacion <-   c("Preparing_Breakfast", "Having_Breakfast", "Preparing_Lunch", "Having_Lunch", "Preparing_Dinner", "Having_Dinner", "Having_Snack")
-      internet     <-   c("Using_Internet")
-      ludico       <-   c("Watching_TV", "Reading_Book", "Using_Internet")
-      seguridad    <-   c("\tGoing_Out", "Sleeping", "Napping")
+# Descomposicion
+dash.dec.act('B','P2',"Toileting")
 
 
-      # Estudiando actividades por grupo 
-      ts.plot(ts.multivar(houseA.p1.freq,seguridad,1,7))
+# Explorando relaciones
+dash.ts.act.pers('A','P1',"Toileting", 'P2',"Toileting")
+dash.ts.act.pers('B','P1',"Toileting", 'P1','Having Breakfast')
 
-      ts.plot.save(ts.multivar(houseA.p1.freq,aseo,1,7), "HouseA-P1 activities history", "week", "hour", "houseA-P1-seguridad")
-      
 
-    
+## Serie de tiempo multivariada del tiempo acomulado por actividad por persona 
+### Actividades por categoría 
+  aseo         <-   c("Having_Shower", "Toileting","Brushing_Teeth")
+  salud        <-   c("Sleeping", "Napping", "Toileting")
+  alimentacion <-   c("Preparing_Breakfast", "Having_Breakfast", "Preparing_Lunch", "Having_Lunch", "Preparing_Dinner", "Having_Dinner", "Having_Snack")
+  internet     <-   c("Using_Internet")
+  ludico       <-   c("Watching_TV", "Reading_Book", "Using_Internet")
+  seguridad    <-   c("\tGoing_Out", "Sleeping", "Napping")
+
+
+  # Estudiando actividades por grupo 
+  ts.plot(ts.multivar(houseA.p1.freq,seguridad,1,7))
+
+  ts.plot.save(ts.multivar(houseA.p1.freq,aseo,1,7), "HouseA-P1 activities history", "week", "hour", "houseA-P1-seguridad")
+  
