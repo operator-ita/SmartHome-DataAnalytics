@@ -7,6 +7,7 @@
   </a>
 
   <h3 align="center">SmartHome-DataAnalytics</h3>
+  <h4 align="center">Equipo 14</h4>
 
   <p align="center">
     Análisis estadístico de dos casas inteligentes multiresidenciales para prober de percepción a los datos y brindar toma de desiciones en los rubros de seguridad, salud, dinámica de los habitantes y más.  
@@ -32,6 +33,7 @@
       <ul>
         <li><a href="#SmartHome-DataAnalytics">SmartHome</a></li>
         <li><a href="#Justificación">Justificación</a></li>
+        <li><a href="#To do">Tareas</a></li>
       </ul>
     </li>
     <li>
@@ -65,7 +67,11 @@ En éste repo nos hemos propuesto exactamente éso, para lo cual analizamos la b
 * El internet de las cosas es un campo que va en aumento, cada día nuevos dispositivos son agregados a la red de internet. Masivas cantidades de datos sin procesar son generados por sensores y actuadores cada segundo, a la espera de analistas de datos.
 * En las casas multiresidenciales cada persona es una variable, lo que hace el problema de la predicción y el análisis un problema multidimencional, razón por la que éste tipo de problemas suele ser abordado por RRN u otro tipo de redes neuronales. En éste proyecto abordamos el tema con series de tiempo tanto para la predicción como para busqueda de patrones de compartamiento. 
 
+### To do
 
+- [X] Realizar gráfica de barras del tiempo que emplea cada persona a una determinada actividad 
+- [X] Realizar gráfricas de series de tiempo acomulado  
+- [ ] Comparar el análisis realizado con series de tiempo contra el obtenido con RNN
 
 <!-- GETTING STARTED -->
 ## Dashboard
@@ -93,15 +99,8 @@ El código aquí incluido está realizado en su totalidad en R.
 ## Datasets
 
 ### Aras Database
-
 _Para más información de la base de datos, refierase a [Aras Documentation](https://www.researchgate.net/publication/261054388_ARAS_Human_Activity_Datasets_in_Multiple_Homes_with_Multiple_Residentsm)_
 
-
-
-<!-- CONTRIBUTING -->
-## Por hacer
-
-- [ ] Comparar el análisis realizado con series de tiempo contra el obtenido con RNN
 
 <!-- LICENSE -->
 ## Licencia
