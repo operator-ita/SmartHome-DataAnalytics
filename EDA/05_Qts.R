@@ -9,13 +9,11 @@ library(dplyr)
 library(tidyr)
 library(reshape2)
 library(imputeTS)
-#library(ggplot2)
-#library(plyr)
-#library(reshape2)
 library(ggthemes)
+library(zoo)
 
 # Directorio de trabajo
-repo.dir <- "C:/Users/luisf/Documents/Github/SmartHome-DataAnalytics"
+repo.dir <- "C:/Users/luisf/Github/SmartHome-DataAnalytics"
 setwd(repo.dir)
 
 #Funciones
@@ -48,28 +46,34 @@ crear.ts <- function(df){
 }
 
 # Importación de datasets 
-houseA <- read.csv("data/Modified/houseA_time.csv")
-houseB <- read.csv("data/Modified/houseB_time.csv")
+houseA <- read.csv("data/Time/houseA.csv")
+houseB <- read.csv("data/Time/houseB.csv")
 
-#todo Linea de tiempo de Q
-# Convert dataframe into a contingency table
-#houseB.tbl <- dcast(houseB.Frec, Day ~ Activity, value.var="Q")
-# Removing columns with at least one NA value
-#View(houseB.tbl)
-#houseB.tbl <- select_if(houseB.tbl[-1] , ~ !any(is.na(.)))
-# Removing "0" column
-#houseB.tbl <- houseB.tbl[-1]
-# Cleaning inf values
-#houseA.tbl <- do.call(data.frame,
-#                      lapply(houseA.tbl, function(x) replace(x, is.infinite(x),NA)))
-# Converting houseA into a matrix
-#houseB.mat <- as.matrix(houseB.tbl)
-#houseB.ts <- ts(houseB.mat, start=1, end=30)
+houseA <- mutate(houseA, time=as.POSIXct(time, format="%H:%M:%S"))
+houseB <- mutate(houseB, time=as.POSIXct(time, format="%H:%M:%S"))
+
+# House A
 houseA.Frec <- frec.comp(houseA)
 houseA.ts <- crear.ts(houseA.Frec)
+
+tv.ts <- houseA.ts[,10]
+(P <- autoplot(as.zoo(tv.ts), facet=NULL) + 
+  theme_stata() + scale_fill_stata()  +
+    ggtitle(paste("Time series of Q - Watching tv")) +
+    labs(x = "Days", y = "Q"))
+ggsave("A_tv_ts.png")
+
+dishes.ts <-houseA.ts[,9]
+(P <- autoplot(as.zoo(dishes.ts), facet=NULL) + 
+    theme_stata() + scale_fill_stata()  +
+    ggtitle(paste("Time series of Q - Washing dishes")) +
+    labs(x = "Days", y = "Q"))
+ggsave("A_dishes_ts.png")
+  
+
+
 plot(na_interpolation(houseA.ts, option="linear"))
+ggsave("Q_houseA.png")
 
-
-houseB.Frec <- frec.comp(houseB)
-houseB.ts <- crear.ts(houseB.Frec)
 plot(na_interpolation(houseB.ts, option="linear"))
+ggsave("Q_houseB.png")
